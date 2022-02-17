@@ -53,7 +53,7 @@ Department users
                                     <td>{{$Dep_user->username }}</td>
                                     <td>{{$Dep_user->fullname }}</td>
                                     <td>{{$Dep_user->email }} </td>
-                                    <td>{{$Dep_user->department->name}}</td>
+                                    <td>{{Auth::User()->department->name}}</td>
                                     <td>{{$Dep_user->created_at}}</td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#user_AssignTutor{{$Dep_user->id}}" title="Assign"><i class="ri-add-circle-fill"></i></button>

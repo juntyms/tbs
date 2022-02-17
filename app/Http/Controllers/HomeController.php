@@ -10,8 +10,7 @@ use App\Models\Model_has_role;
 use App\Models\Tutorial_request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
-
+use RealRashid\SweetAlert\Facades\Alert;
 class HomeController extends Controller
 {
     /**
@@ -240,7 +239,9 @@ class HomeController extends Controller
           $userprofile->update(['phone'=>$request->phone]);
 
         }
+        Alert::toast('Profile updated!','success');
         return redirect()->route('user.profile');
+
 
     }
 }

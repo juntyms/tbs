@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class AdminCourseController extends Controller
@@ -59,9 +60,11 @@ class AdminCourseController extends Controller
         if(!$checkifExist){
 
             Course::create(['name'=>$request->name,'code'=>$request->courscode,'department_id'=>Auth::User()->department_id ]);
+            Alert::toast('course is Created successfully!! ','success');
             return redirect()->route('course.index');
         }else{
-            return Redirect::back()->withErrors(['msg' =>'the course is already exist!!']);
+            Alert::toast('course is already exist!! ','warning');
+            return redirect()->back();
 
         }
 
@@ -98,12 +101,11 @@ class AdminCourseController extends Controller
            
             }
             $decourse->update(['active'=>0]);
-            return redirect()->route('course.index')->withErrors(['msg' =>'deleted !!!!!']);
+            Alert::toast('course is Delete successfully!! ','warning');
+            return redirect()->route('course.index');
         }
     
-       
-        return Redirect::back()->withErrors(['msg' =>'course not found !!!!!']);
-       
+        Alert::toast('course not found ','warning');       
     }
     
     public function updatecourse(Request $request,$id)
@@ -111,6 +113,8 @@ class AdminCourseController extends Controller
         $course = Course::findOrFail($request->id);
       
         $course->update(['name'=>$request->name, 'code'=>$request->coursecode]);
+
+        Alert::toast('course is updated successfully !! ','success');
         return redirect()->route('course.index');
     }
 
@@ -119,8 +123,15 @@ class AdminCourseController extends Controller
     public function getuseres()
     {
         
-        $Dep_users=User::where("department_id",Auth::User()->department_id)
-                        ->where('active',1)->cursorPaginate(7);
+        $Dep_users=\DB::table('users')->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+                                     ->where(function($q){
+                                         $q->whereIn('model_has_roles.role_id',['3','4','5'])
+                                            ->orWhereNull('model_has_roles.role_id');
+                                     })
+                                    ->where('users.department_id',Auth::User()->department_id)
+                                    ->where('users.active',1)->get();
+
+        
         
         return view('user.index')->with('Dep_users', $Dep_users);
     }
@@ -156,10 +167,12 @@ class AdminCourseController extends Controller
                 Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_student'=> 1,'is_staff'=>0]);
 
             }
-            return redirect()->route('user.tutor')->with('success','User created successfully');
+            Alert::toast('Tutor Created successfully ','success');
+            return redirect()->route('user.tutor');
         }else
         {
-            return redirect()->back()->with('error','the Tutor is already exist!!');
+            Alert::toast('the Tutor is already exist!!','warning');
+            return redirect()->back();
 
         }
 
@@ -206,11 +219,12 @@ class AdminCourseController extends Controller
             }
             
             $detutor->update(['active'=>0]);
-            return redirect()->route('user.tutor')->with('success','Deleted successfully');
+            Alert::toast('Tutor Deleted successfully ','warning');
+            return redirect()->route('user.tutor');
            
         }
-    
-        return redirect()->route('user.tutor')->with('error','Deleted is note Delete!!');
+        Alert::toast('Tutor is not Delete!! ','warning');
+        return redirect()->route('user.tutor');
     }
 
     //#################################Avaliable courses ###################################
@@ -253,6 +267,7 @@ class AdminCourseController extends Controller
                         ->whereExists(function ($query) {
                             $query->select(DB::raw(1))
                                 ->from('tutors')
+                                ->where('tutors.active',1)
                                 ->whereColumn('tutors.user_id', 'users.id');
                         })
                         ->get();
@@ -324,7 +339,7 @@ class AdminCourseController extends Controller
        
         Available_course::create(['course_id'=>$request->course,'ay_id'=>$Aay_id->id,'tutor_id'=>$tutorid,'day'=>$request->day,
                                 'time'=>$request->time,'location'=>$request->location]);
-    
+        Alert::toast('avaliable course added  successfully ','success');
         return redirect()->route('Acourse.index');
 
 
@@ -355,8 +370,11 @@ class AdminCourseController extends Controller
             }
             
             $DeltAvaliable_course->update(['active'=>0]);
+            Alert::toast('avaliable course is Delete!! ','warning');
+            return back();
            
         }
+        Alert::toast('avaliable course is note exist','warning');
         return back();
     }
 

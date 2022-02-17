@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tutor;
+use App\Models\Model_has_role;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -57,6 +58,10 @@ class User extends Authenticatable
     public function department()
     {
         return $this->belongsTo('App\Models\Department');
+    }
+    public function user_roles()
+    {
+        return $this->hasMany('App\Models\Model_has_role');
     }
     
 

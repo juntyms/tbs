@@ -11,26 +11,27 @@
 </head>
 
 <body>
+    
+    @include('sweetalert::alert')
+    @include('layouts.main-header')
+    @include('layouts.main-sidebar.admin-main-sidebar')
 
-        @include('layouts.main-header')
-        @include('layouts.main-sidebar.admin-main-sidebar')
+    
+    <main id="main" class="main">
 
-       
-        <main id="main" class="main">
+        @yield('PageTitle')
+        <section class="section">
+            @yield('content')
+        </section>
+    
+    </main>
+    @include('layouts.footer')
 
-            @yield('PageTitle')
-            <section class="section">
-                @yield('content')
-            </section>
-        
-        </main>
-        @include('layouts.footer')
+<!--=================================
+footer -->
 
-    <!--=================================
- footer -->
-
-    @include('layouts.footer-scripts')
-    @yield('customjs')
+@include('layouts.footer-scripts')
+@yield('customjs')
 
 </body>
 
