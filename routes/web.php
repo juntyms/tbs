@@ -28,7 +28,7 @@ Route::get('/', function () {
 })->name('login');
 
 Auth::routes();
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth','prevent-back-history']], function() {
 Route::resource('roles','UserManagement\RoleController');
 Route::resource('users','UserManagement\UserController');
 

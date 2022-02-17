@@ -45,6 +45,11 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
         $config=array(
             'user_id_key'=>'samaccountname',
             'account_suffix'=> '@sct.edu.om',
@@ -75,7 +80,7 @@ class LoginController extends Controller
                     return redirect()->route('home');
 
                 }
-                return redirect()->route('login')->withErrors('Invalid Login Credentials')->withInput();
+                return redirect()->route('login')->withErrors(['username' => 'The provided credentials do not match our records.']);
 
             }else{
                 if(Auth::attempt(['username'=>$username,'password'=>$password]))
@@ -83,7 +88,7 @@ class LoginController extends Controller
                     return redirect()->route('home');
 
                 }
-                return redirect()->route('login')->withErrors('Invalid Login Credentials')->withInput();
+                return redirect()->route('login')->withErrors(['username' => 'The provided credentials do not match our records.']);
             }
         }
         else
@@ -109,7 +114,7 @@ class LoginController extends Controller
                 Auth::login($user);
 
             }
-            return redirect()->route('login')->withErrors('Invalid Login Credentials')->withInput();
+            return redirect()->route('login')->withErrors(['username' => 'The provided credentials do not match our records.']);
 
 
         }

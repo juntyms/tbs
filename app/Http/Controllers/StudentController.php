@@ -15,6 +15,7 @@ use App\Models\Available_course;
 use App\Models\Tutorial_request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class StudentController extends Controller
@@ -359,6 +360,7 @@ class StudentController extends Controller
             Student_comment::create(['tutorial_request_id'=>$studentcomment->id,'description'=>$request->comment]);
 
         }
+        Alert::toast('New Tutorial is booked !!','success');
         return redirect()->route('student.tutorial.list');
     }
 
@@ -368,7 +370,7 @@ class StudentController extends Controller
         Tutor_comment::where('tutorial_request_id',$requestid)->delete();
         Student_comment::where('tutorial_request_id',$requestid)->delete();
         Tutorial_request::destroy($requestid);
-
+        Alert::toast('Tutorial is Deleted ','warning');
         return redirect()->route('student.tutorial.list');
 
     }

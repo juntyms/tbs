@@ -11,6 +11,7 @@ use App\Models\Available_course;
 use App\Models\Tutorial_request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TutorController extends Controller
 {
@@ -164,8 +165,25 @@ class TutorController extends Controller
         if($status==1 || $status==2 || $status==3 || $status==4)
         {
             $updateRequest->update(['accepted'=>$status]);
+            if($status==1)
+            {
+                Alert::toast('Request approved ','success');
+            }
+            if($status==2)
+            {
+                Alert::toast('Request Rejected ','warning');
+            }
+            if($status==3)
+            {
+                Alert::toast('Request completed ','success');
+            }
+            if($status==4)
+            {
+                Alert::toast('Request incompleted ','warning');
+            }
 
         }
+        
 
         return redirect()->route('Tutor.tutorial.list');
 
