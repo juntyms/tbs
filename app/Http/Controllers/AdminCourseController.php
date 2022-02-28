@@ -336,12 +336,22 @@ class AdminCourseController extends Controller
         ]);
         
         $Aay_id=Ay::firstwhere('is_active', 1);
-       
-        Available_course::create(['course_id'=>$request->course,'ay_id'=>$Aay_id->id,'tutor_id'=>$tutorid,'day'=>$request->day,
-                                'time'=>$request->time,'location'=>$request->location]);
-        Alert::toast('avaliable course added  successfully ','success');
-        return redirect()->route('Acourse.index');
 
+        if($Aay_id)
+        {
+
+            Available_course::create(['course_id'=>$request->course,'ay_id'=>$Aay_id->id,'tutor_id'=>$tutorid,'day'=>$request->day,
+                                    'time'=>$request->time,'location'=>$request->location]);
+            Alert::toast('avaliable course added  successfully ','success');
+            return redirect()->route('Acourse.index');
+        }
+        else
+        {
+
+            Alert::toast('avaliable course note added  ','warning');
+            return redirect()->route('Acourse.index');
+
+        }
 
 
     }

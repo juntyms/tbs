@@ -1085,6 +1085,9 @@ h1, h2, h3, h4, h5, h6 {
 .bg-c-blue {
   background: linear-gradient(45deg, #4099ff, #73b4ff);
 }
+.bg-R-blue {
+  background: linear-gradient(#e66465, #e591b4);
+}
 .order-card {
   color: #fff; }
 .order-card i {

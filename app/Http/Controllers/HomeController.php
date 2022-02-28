@@ -73,7 +73,7 @@ class HomeController extends Controller
         }
         if($superUser)
         {
-            return redirect()->route('superuserpage',($page ='users'));
+            return view('home');
 
         }elseif($DepAdminUser)
         {
@@ -136,7 +136,7 @@ class HomeController extends Controller
 
 
             
-            return redirect()->route('student.tutorial.list');
+            return view('home');
 
         }elseif($StudentUser)
         {
@@ -166,7 +166,7 @@ class HomeController extends Controller
 
 
             
-            return redirect()->route('student.tutorial.list');
+            return view('home');
 
         }elseif($TutorUser)
         {
@@ -197,7 +197,7 @@ class HomeController extends Controller
                     }
                 }
             }
-            return redirect()->route('Tutor.tutorial.list');
+            return view('home');
 
         }else{
             Auth::logout();
