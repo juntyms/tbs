@@ -18,7 +18,8 @@ Booking Select Department
                 </div>
             </div>
         </a>
-        @endcan
+    @endcan
+    @can('user-list')
         
        
         <a class="col-md-6 col-xl-3"  href="{{ url('/'.($page ='users')) }}">
@@ -30,6 +31,8 @@ Booking Select Department
                 </div>
             </div>
         </a>
+        @endcan
+        @can('role-list')
         <a class="col-md-6 col-xl-3"  href="{{ url('/'.($page ='roles')) }}">
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
@@ -39,6 +42,8 @@ Booking Select Department
                 </div>
             </div>
         </a>
+        @endcan
+        @can('dep-user')
         <a class="col-md-6 col-xl-3"  href="{{route('user.index')}}">
             <div class="card bg-R-blue order-card">
                 <div class="card-block">
@@ -47,7 +52,10 @@ Booking Select Department
                     <p class="m-b-0"><span class="f-right"></span></p>
                 </div>
             </div>
+        
         </a>
+        @endcan
+        @can('dep-course')
         <a class="col-md-6 col-xl-3"  href="{{route('course.index')}}">
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
@@ -57,6 +65,8 @@ Booking Select Department
                 </div>
             </div>
         </a>
+        @endcan
+        @can('dep-tutor-list')
         <a class="col-md-6 col-xl-3"  href="{{route('user.tutor')}}">
             <div class="card bg-R-blue order-card">
                 <div class="card-block">
@@ -66,6 +76,8 @@ Booking Select Department
                 </div>
             </div>
         </a>
+        @endcan
+        @can('dep-AVcourse-list')
         <a class="col-md-6 col-xl-3"  href="{{route('Acourse.index')}}">
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
@@ -75,7 +87,9 @@ Booking Select Department
                 </div>
             </div>
         </a>
-        <a class="col-md-6 col-xl-3"  href="">
+        @endcan
+        @can('booking')
+        <a class="col-md-6 col-xl-3"  href="{{route('student.booking.Department')}}">
             <div class="card bg-R-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">booking</h6>
@@ -84,9 +98,10 @@ Booking Select Department
                 </div>
             </div>
         </a>
-       
+        @endcan
+        @can('student-schedule')
         <a class="col-md-6 col-xl-3"  href="{{route('student.tutorial.timetable')}}">
-            <div class="card bg-c-blue order-card">
+            <div class="card bg-R-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Student Timetable</h6>
                     <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
@@ -94,9 +109,65 @@ Booking Select Department
                 </div>
             </div>
         </a>
+        @endcan
        
+       
+        @can('student-tutorials')
+        <a class="col-md-6 col-xl-3"  href="{{route('student.tutorial.list')}}">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">current tutorials</h6>
+                    <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
+                    <p class="m-b-0"><span class="f-right"></span></p>
+                </div>
+            </div>
+        </a>
         
-   
+        @endcan
+        @can('student-tutorials')
+        <a class="col-md-6 col-xl-3"   href="{{route('student.tutorial.alllist')}}">
+            <div class="card bg-R-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">All tutorials</h6>
+                    <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
+                    <p class="m-b-0"><span class="f-right"></span></p>
+                </div>
+            </div>
+        </a>
+        @endcan
+        @can('tutor-tutorials')
+        <a class="col-md-6 col-xl-3"   href="{{route('Tutor.tutorial.timetable')}}">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">tutor timetable</h6>
+                    <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
+                    <p class="m-b-0"><span class="f-right"></span></p>
+                </div>
+            </div>
+        </a>
+        @endcan
+        @can('tutor-tutorials')
+        <a class="col-md-6 col-xl-3"  href="{{route('Tutor.tutorial.list')}}">
+            <div class="card bg-R-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">current Requests</h6>
+                    <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
+                    <p class="m-b-0"><span class="f-right"></span></p>
+                </div>
+            </div>
+        </a>
+        @endcan
+        @can('tutor-tutorials')
+        <a class="col-md-6 col-xl-3"  href="{{route('Tutor.tutorial.allRequest')}}">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">All Requests</h6>
+                    <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
+                    <p class="m-b-0"><span class="f-right"></span></p>
+                </div>
+            </div>
+        </a>
+        @endcan
         
     </div>
 
