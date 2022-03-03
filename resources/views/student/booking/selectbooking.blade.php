@@ -22,23 +22,39 @@ Booking Select Tutor-Course
                     Select Tutor/Course
                 </h5>
                 <div class="card-title">
-                    <form  action="{{route('student.booking.option',$dep)}}" method="POST">
-                        @csrf
-                        <div class="row">
-                            
+                        {{ Form::open(['route'=>['student.booking.option',$dep]]) }}
+                            <div class="row">
+                                <div class="col-lg-7 mb-3">
+                                    {{ Form::select('selectT',$Serchtutor,null,['class' => 'test form-control','placeholder' => 'Selected Tutor']) }}
+                
+                                    <br><br>
+                                    {{ Form::select('selectC',$courses,null,['class' => 'test form-control','placeholder' => 'Selected course']) }}
+                                </div>
+                                            
+                                <div class="col-lg-5 mt-3">
+                                    <button  type="submit"class="btn btn-primary" style="height:30px; width:100px;">Select</button>
+                                </div>
+                            </div>
+                        {{ Form::close() }}
+                        <!--
+                        <form  action="{{route('student.booking.option',$dep)}}" method="POST">
+                            @csrf
+                            <div class="row">
+                                
 
-                            <div class="col-lg-7 mb-3">
-                                <select class="livesearch form-control mb-1" id="livesearch" name="livesearch[]"></select>
-                                <br><br>
-                                <select class="livesearch2 form-control" id="livesearch2" name="livesearch2[]"></select>
+                                <div class="col-lg-7 mb-3">
+                                    <select class="livesearch form-control mb-1" id="livesearch" name="livesearch[]"></select>
+                                    <br><br>
+                                    <select class="livesearch2 form-control" id="livesearch2" name="livesearch2[]"></select>
+                                </div>
+                            
+                                <div class="col-lg-5 mt-3">
+                                    <button  type="submit"class="btn btn-primary" style="height:30px; width:100px;">Select</button>
+                                </div>
                             </div>
-                        
-                            <div class="col-lg-5 mt-3">
-                                <button  type="submit"class="btn btn-primary" style="height:30px; width:100px;">Select</button>
-                            </div>
-                        </div>
-                        
-                    </form>
+                            
+                        </form>
+                        !-->
                 </div>
                 @if($show1)
                     @include('student.booking.Selected.course')
@@ -78,6 +94,8 @@ Booking Select Tutor-Course
             cache: true
         }
     });
+
+    $('.test').select2();
 </script>
 <script type="text/javascript">
     $('.livesearch2').select2({

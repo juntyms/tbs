@@ -39,32 +39,46 @@ class StudentController extends Controller
         $show_CourseTutors=False;
         $show_TutorCourse=False;
         $depid=Department::firstwhere('id',$depid);
+
+        $Serchtutor = [];
+        $courses = [];       
+        $Serchtutor =User::where('department_id',$depid->id)
+                         ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                            ->from('tutors')
+                            ->where('tutors.active',1)
+                            ->whereColumn('tutors.user_id', 'users.id');})->pluck("fullname", "id");
+       
+        $courses =Course::where('department_id',$depid->id)
+                            ->whereExists(function ($query){
+                    $query->select(DB::raw(1))
+                            ->from('available_courses')
+                            ->where('available_courses.active',1)
+                            ->whereColumn('available_courses.course_id', 'courses.id'); })->pluck("name", "id");
         
         return view('student.booking.selectbooking')->with('dep',$depid)
                                                         ->with('show1',$show_TutorCourses)
                                                         ->with('show2',$show_CourseTutors)
-                                                        ->with('show3',$show_TutorCourse);
+                                                        ->with('show3',$show_TutorCourse)
+                                                        ->with('Serchtutor',$Serchtutor)
+                                                        ->with('courses',$courses);
 
     }
     
     public function AutoselectingTutor(Request $request,$depid)
     {
-    	$movies = [];
-
-        if($request->has('q')){
-            $search = $request->q;
-            ($movies =User::select("id", "fullname")
-            		->where('fullname', 'LIKE', "%$search%")
-                    ->where('department_id',$depid)
-                    ->whereExists(function ($query) {
-                        $query->select(DB::raw(1))
-                              ->from('tutors')
-                              ->where('tutors.active',1)
-                              ->whereColumn('tutors.user_id', 'users.id');
-                    })
-            		->get());
-        }
-        return response()->json($movies);
+    	$Serchtutor = [];  
+        $Serchtutor =User::select("id", "fullname")
+                         ->where('department_id',$depid)
+                         ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                            ->from('tutors')
+                            ->where('tutors.active',1)
+                            ->whereColumn('tutors.user_id', 'users.id');})->get();
+    
+       
+            
+    
     }
     public function AutoselectingCourse(Request $request,$depid)
     {
@@ -91,18 +105,36 @@ class StudentController extends Controller
         $show_TutorCourses=False;
         $show_CourseTutors=False;
         $show_TutorCourse=False;
+
+        $Serchtutor = [];
+        $courses = [];  
+
+        $Serchtutor =User::where('department_id',$depid->id)
+                         ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                            ->from('tutors')
+                            ->where('tutors.active',1)
+                            ->whereColumn('tutors.user_id', 'users.id');})->pluck("fullname", "id");
+        
+                            
+        $courses =Course::where('department_id',$depid->id)
+                        ->whereExists(function ($query){
+                $query->select(DB::raw(1))
+                        ->from('available_courses')
+                        ->where('available_courses.active',1)
+                        ->whereColumn('available_courses.course_id', 'courses.id'); })->pluck("name", "id");
+    
+
         if($Aay_id)
         {
-            if($request->has('livesearch2') && $request->has('livesearch'))
+           
+            if((isset($request->selectC)) && (isset($request->selectT)))
             {
-                $userid=$request->input('livesearch.0');
+                $userid=$request->input('selectT');
                 $tutorid=Tutor::firstwhere('user_id',$userid);
-                $courseid=$request->input('livesearch2.0');
-                
-                
-    
-    
-    
+                $courseid=$request->input('selectC');
+
+
                 $booking_TutCourse= Available_course::get()->where('ay_id',$Aay_id->id)
                                                            ->where('tutor_id',$tutorid->id)
                                                            ->where('course_id',$courseid)
@@ -122,14 +154,16 @@ class StudentController extends Controller
                                                             ->with('show1',$show_TutorCourses)
                                                             ->with('show2',$show_CourseTutors)
                                                             ->with('show3',$show_TutorCourse)
-                                                            ->with('booked',$listTutorial);
+                                                            ->with('booked',$listTutorial)
+                                                            ->with('Serchtutor',$Serchtutor)
+                                                            ->with('courses',$courses);
                     
     
     
             }
-            elseif($request->has('livesearch2') && !($request->has('livesearch')))
+            elseif((isset($request->selectC)) && !(isset(($request->selectT))))
             {
-                $courseid=$request->input('livesearch2.0');
+                $courseid=$request->input('selectC');
                
                 $booking_TutCourse= Available_course::get()->where('ay_id',$Aay_id->id)
                                                         ->where('course_id',$courseid)
@@ -150,16 +184,18 @@ class StudentController extends Controller
                                                             ->with('show1',$show_TutorCourses)
                                                             ->with('show2',$show_CourseTutors)
                                                             ->with('show3',$show_TutorCourse)
-                                                            ->with('booked',$listTutorial);
+                                                            ->with('booked',$listTutorial)
+                                                            ->with('Serchtutor',$Serchtutor)
+                                                            ->with('courses',$courses);
 
                
     
     
             }
-            elseif(!($request->has('livesearch2')) && $request->has('livesearch'))
+            elseif(!((isset($request->selectC))) && (isset(($request->selectT))))
             {
     
-                $userid=$request->input('livesearch.0');
+                $userid=$request->input('selectT');
                 $tutorid=Tutor::firstwhere('user_id',$userid);
     
                 $booking_TutCourse= Available_course::get()->where('ay_id',$Aay_id->id)
@@ -180,21 +216,34 @@ class StudentController extends Controller
                                                             ->with('show1',$show_TutorCourses)
                                                             ->with('show2',$show_CourseTutors)
                                                             ->with('show3',$show_TutorCourse)
-                                                            ->with('booked',$listTutorial);
+                                                            ->with('booked',$listTutorial)
+                                                            ->with('Serchtutor',$Serchtutor)
+                                                            ->with('courses',$courses);
     
     
             }
+            else{
+
+                return view('student.booking.selectbooking')->with('dep',$depid)
+                                                            ->with('show1',$show_TutorCourses)
+                                                            ->with('show2',$show_CourseTutors)
+                                                            ->with('show3',$show_TutorCourse)
+                                                            ->with('Serchtutor',$Serchtutor)
+                                                            ->with('courses',$courses);
 
 
 
 
+            }
         }
         else{
 
             return view('student.booking.selectbooking')->with('dep',$depid)
                                                         ->with('show1',$show_TutorCourses)
                                                         ->with('show2',$show_CourseTutors)
-                                                        ->with('show3',$show_TutorCourse);
+                                                        ->with('show3',$show_TutorCourse)
+                                                        ->with('Serchtutor',$Serchtutor)
+                                                        ->with('courses',$courses);
 
         }
 
