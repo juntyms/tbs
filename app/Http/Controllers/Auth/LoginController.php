@@ -102,16 +102,25 @@ class LoginController extends Controller
                 $email=$result["mail"];
                 $department_name=$result["department"];
                 $departmentid=Department::where('name',$department_name)->first();
+                if($departmentid)
+                {
+
+                
 
                 $Adduser=User::create(['username'=>$username,
                                         'fullname'=>$fullname,
                                         'email'=>$email,
                                         'department_id'=>$departmentid->id]);
-                        
                 $insertedid=$Adduser->id;
                 $user=User::findOrFail($insertedid);
                 $user->assignRole('student-role');
                 Auth::login($user);
+
+                }else{
+                    return redirect()->route('login')->withErrors(['username' => 'Not allowed to login!!. Please with Department Coordinate.']);
+                }
+                        
+               
 
             }
             return redirect()->route('login')->withErrors(['username' => 'The provided credentials do not match our records.']);

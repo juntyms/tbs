@@ -1282,3 +1282,58 @@ float: right;
 .fs-9 {
   font-size: 9px
 };
+
+.name{
+	font-size: 24px;
+	text-align: center;
+    color: yellow; 
+	font-weight: bold;
+	text-transform: uppercase;
+
+}
+.position{
+	font-size: 16px;
+	text-align: center;
+    color: white;
+}
+
+.location{
+	font-size: 13px;
+	text-align: center;
+	color: white;
+
+}
+
+.boxPeer{
+  border: 3px solid gray;
+  background-color: #3d85c6;   
+  opacity: 1;
+}
+.img {
+	display: block;
+    width: 60%;
+    height: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.box{
+  border: 3px solid gray;
+  background-color: #0eb493;   
+  opacity: 1;
+}
+.sec-title {}
+
+.sec-title h2 {
+  color: #0eb493;
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.team-member h4 {
+  color: #062033;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 15px 0 8px;
+}
