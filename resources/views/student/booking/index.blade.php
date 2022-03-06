@@ -18,7 +18,7 @@ Booking Select Department
 
       @if($dep->Available()->where('available_courses.active',1)->count()>0)
 
-        <a class="col-md-6 col-xl-3"  href="{{route('student.booking.selecting',$dep)}}">
+        <a class="col-md-6 col-xl-3"  href="{{route('deplistAv',$dep)}}">
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">{{$dep->name}} </h6>

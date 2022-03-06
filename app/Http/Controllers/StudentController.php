@@ -448,6 +448,59 @@ class StudentController extends Controller
         }
         return response()->json(['success'=>'Successfully']);
     }
+
+
+    #-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    public function booking_department_availablecourses($depid)
+    {
+       
+        $depid=Department::firstwhere('id',$depid);
+        $Dep_AVCourses = [];       
+       
+        if($depid)
+        {
+
+        
+        $Dep_AVCourses =Course::where('department_id',$depid->id)
+                            ->whereExists(function ($query){
+                    $query->select(DB::raw(1))
+                            ->from('available_courses')
+                            ->where('available_courses.active',1)
+                            ->whereColumn('available_courses.course_id', 'courses.id'); })->distinct()
+                            ->get();
+        }
+      
+        return view('student.booking.DepartmentAvailablecourses')->with('dep',$depid)
+                                                    ->with('Dep_AVCourses',$Dep_AVCourses);
+
+    }
+
+    public function booking_department_availablecourses_tutor($depid,$course)
+    {
+        $depid=Department::firstwhere('id',$depid);
+        $course=Course::firstwhere('id',$course);
+        $Aay_id=Ay::firstwhere('is_active', 1);
+        $avcourses=[];
+
+        if($depid && $Aay_id )
+        {
+
+
+            $avcourses= Available_course::get()->where('ay_id',$Aay_id->id)
+                                                        ->where('course_id',$course->id)
+                                                        ->where('active',1);
+        }
+
+        return view('student.booking.DepcourseTutor')->with('dep',$depid)
+                                                     ->with('course',$course)
+                                                     ->with('avcourses',$avcourses);
+    }
+
+
+
+
     
 
 }
