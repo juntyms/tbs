@@ -47,7 +47,7 @@ Booking Select Department
     <a class="col-md-6 col-xl-3" href="{{route('user.index')}}">
         <div class="card bg-R-blue order-card">
             <div class="card-block">
-                <h6 class="m-b-20">Department users</h6>
+                <h6 class="m-b-20">Department Users</h6>
                 <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
                 <p class="m-b-0"><span class="f-right"></span></p>
             </div>
