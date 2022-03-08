@@ -43,63 +43,73 @@ current requests
 
   <div class="col-lg-12">
 
-    <div class="card">
-      <div class="card-body">
-        <!-- Table with stripped rows -->
-        <div class="table-responsive">
-          <table class="table datatable table-hover">
-            <thead>
-              <tr>
-                <th>Tutorial ID</th>
-                <th> Course</th>
-                <th>student</th>
-                <th>Day/Time</th>
-                <th>location</th>
-                <th>status</th>
-                <th>comments</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($lists as $list)
-              <tr>
-                <td>{{$list->id}}</td>
-                <td>{{$list->AvaliableCourse->course->name}}</td>
-                <td>{{$list->student->fullname}} </td>
-                <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
-                <td>{{$list->AvaliableCourse->location}}</td>
-                @if($list->accepted==0)
-                <td>
-                  <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#status{{$list->id}}" title="satus"><i class="ri-add-circle-line"></i></button>
-                  <div class="modal fade" id="status{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-                    @include('Tutors.status')
-                  </div>
-                </td>
-                @elseif($list->accepted==1)
-                <td><button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#status{{$list->id}}" title="satus"><i class="ri-pencil-line"></i></button>
-                  <div class="modal fade" id="status{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-                    @include('Tutors.status')
-                  </div>
-                </td>
-                @elseif($list->accepted==2)
-                <td>Rejected</td>
-                @elseif($list->accepted==3)
-                <td>completed</td>
-                @elseif($list->accepted==4)Rejected
-                <td>incompleted</td>
-                @endif
-                <td>
-                  <button type="button" class="btn btn-info btn-md" data-bs-toggle="modal" data-bs-target="#commentt{{$list->id}}" title="comments"><i class="ri-mail-line"></i></button>
-                </td>
-                <div class="modal fade" id="commentt{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  @include('comments.comtutor')
-                </div>
+        <div class="card">
+            <div class="card-body">
+              <!-- Table with stripped rows -->
+              <div class="table-responsive">
+                <table class="table datatable table-hover">
+                    <thead>
+                    <tr>
+                        <th>Tutorial ID</th>
+                        <th> Course</th>
+                        <th>student</th>
+                        <th>Day/Time</th>
+                        <th>location</th>
+                        <th>Link</th>
+                        <th>status</th>
+                        <th>comments</th>
 
-              </tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            @foreach($lists as $list)
+                                <tr>
+                                    <td>{{$list->id}}</td>
+                                    <td>{{$list->AvaliableCourse->course->name}}</td>
+                                    <td>{{$list->student->fullname}} </td>
+                                    <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
+                                    <td>{{$list->AvaliableCourse->location}}</td>
+                                    @if($list->AvaliableCourse->link)
+                                      <td><a href="{{$list->AvaliableCourse->link}}" target="_blank">click here</a></td>
+                                    @else
+                                    <td></td>
+                                    @endif
+                                    @if($list->accepted==0)
+                                      <td>
+                                      <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#status{{$list->id}}" title="satus"><i class="ri-add-circle-line"></i></button>
+                                        <div class="modal fade" id="status{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+                                            @include('Tutors.status')
+                                        </div>
+                                      </td>
+                                    @elseif($list->accepted==1)
+                                      <td><button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#status{{$list->id}}" title="satus"><i class="ri-pencil-line"></i></button>
+                                        <div class="modal fade" id="status{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+                                            @include('Tutors.status')
+                                        </div>
+                                      </td>
+                                    @elseif($list->accepted==2)
+                                      <td>Rejected</td>
+                                    @elseif($list->accepted==3)
+                                      <td>completed</td>
+                                    @elseif($list->accepted==4)Rejected
+                                      <td>incompleted</td>
+                                    @endif
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-md" data-bs-toggle="modal" data-bs-target="#commentt{{$list->id}}" title="comments"><i class="ri-mail-line"></i></button>
+                                    </td>
+                                    <div class="modal fade" id="commentt{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          @include('comments.comtutor')
+                                    </div>
+                                    
+                                  </tr>
+
+   
 
               @endforeach
             </tbody>
           </table>
+
 
         </div>
       </div>

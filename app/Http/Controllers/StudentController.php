@@ -483,6 +483,7 @@ class StudentController extends Controller
         $course=Course::firstwhere('id',$course);
         $Aay_id=Ay::firstwhere('is_active', 1);
         $avcourses=[];
+        $listTutorial=[];
 
         if($depid && $Aay_id )
         {
@@ -491,10 +492,16 @@ class StudentController extends Controller
             $avcourses= Available_course::get()->where('ay_id',$Aay_id->id)
                                                         ->where('course_id',$course->id)
                                                         ->where('active',1);
-        }
+            $listTutorial=Tutorial_request::where('user_id',Auth::User()->id)
+                                            ->where('active',1)
+                                            ->whereExists(function($query){
+                                                    $query->where('accepted',0)
+                                                        ->orWhere('accepted',1);})->get();
+                                }
 
         return view('student.booking.DepcourseTutor')->with('dep',$depid)
                                                      ->with('course',$course)
+                                                     ->with('lisbooked',$listTutorial)
                                                      ->with('avcourses',$avcourses);
     }
 

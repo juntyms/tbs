@@ -59,7 +59,7 @@ Select tutor
                     
                       
                           <?php
-                              $Ttimes=array(8,9,10,11,12,13,14,15);
+                              $Ttimes=array(8,9,10,11,12,13,14,15,16,17,18,19,20);
                               $wdays=array('Sunday','Monday','Tuseday','Wednesday','Thursday','Friday','Satuday');
                               for ($i=0; $i < sizeof($Ttimes) ; $i++)
                               {
