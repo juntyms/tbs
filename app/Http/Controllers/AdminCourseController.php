@@ -155,14 +155,16 @@ class AdminCourseController extends Controller
             $user = User::find($id);
             DB::table('model_has_roles')->where('model_id',$user->id)->delete();
             $user->assignRole($request->input('roles'));
-
+            
             if($request->usertype==1)
             {
+               
                 $user->assignRole('tutor-role');
             
                 Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_staff'=>1,'is_student'=> 0]);
 
-            }else{ 
+            }elseif ($request->usertype==2){ 
+                dd($request->usertype);
                 $user->assignRole('student-tutor');
                 Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_student'=> 1,'is_staff'=>0]);
 
@@ -212,12 +214,8 @@ class AdminCourseController extends Controller
             }
             $user = User::find($detutor->user_id);
             DB::table('model_has_roles')->where('model_id',$user->id)->delete();
-            if($detutor->is_student==1)
-            {
-                $user->assignRole('student-role');
+            $user->assignRole('student-role');
 
-            }
-            
             $detutor->update(['active'=>0]);
             Alert::toast('Tutor Deleted successfully ','warning');
             return redirect()->route('user.tutor');
@@ -339,9 +337,18 @@ class AdminCourseController extends Controller
 
         if($Aay_id)
         {
+            if($request->link)
+            {
+                Available_course::create(['course_id'=>$request->course,'ay_id'=>$Aay_id->id,'tutor_id'=>$tutorid,'day'=>$request->day,
+                                    'time'=>$request->time,'location'=>$request->location,'link'=>$request->link]);
 
-            Available_course::create(['course_id'=>$request->course,'ay_id'=>$Aay_id->id,'tutor_id'=>$tutorid,'day'=>$request->day,
-                                    'time'=>$request->time,'location'=>$request->location]);
+            }else{
+                Available_course::create(['course_id'=>$request->course,'ay_id'=>$Aay_id->id,'tutor_id'=>$tutorid,'day'=>$request->day,
+                'time'=>$request->time,'location'=>$request->location]);
+
+            }
+
+           
             Alert::toast('avaliable course added  successfully ','success');
             return redirect()->route('Acourse.index');
         }

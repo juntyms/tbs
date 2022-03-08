@@ -22,7 +22,7 @@ Booking Select Department
 		</div>
 		<br>
         @foreach($avcourses as $ct)
-        
+         
             <figure class="team-member btn-sm col-md-3 col-sm-6 col-xs-12 text-center" data-bs-toggle="modal" data-bs-target="#addcourse{{$ct->id}}">
                 <div class="box">
 
@@ -48,7 +48,7 @@ Booking Select Department
                                     
             @include('student.booking.Selected.Add')
         </div>
-                                       
+                                         
         @endforeach
     
     </div>

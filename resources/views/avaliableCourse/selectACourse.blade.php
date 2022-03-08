@@ -13,7 +13,7 @@
                     <div class="card card-body">
 
                         <div class="form-floating mb-3">
-                            {{ Form::text('day',$wdays[$x],['class' => 'form-control','placeholder' => 'Selected Day']) }}
+                            {{ Form::text('day',$wdays[$x],['class' => 'form-control','placeholder' => 'Selected Day','readonly']) }}
                             {{ Form::label('Day') }}
                             @error('day')
                                 <div class="text-danger mt-2 text-sm">
@@ -22,7 +22,7 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            {{ Form::text('time',$Ttimes[$i],['class' => 'form-control','placeholder' => 'Selected time']) }}
+                            {{ Form::text('time',$Ttimes[$i],['class' => 'form-control','placeholder' => 'Selected time','readonly']) }}
                             {{ Form::label('Time') }}
                             @error('time')
                                 <div class="text-danger mt-2 text-sm">
@@ -48,12 +48,21 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="form-floating mb-3">
+                            {{ Form::text('link',null,['class' => 'form-control','placeholder' => 'Enter Location']) }}
+                            {{ Form::label('Link') }}
+                            @error('day')
+                                <div class="text-danger mt-2 text-sm">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
                 
                 </div>
                 <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                        <button type="submit" class="btn btn-success">sumbit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                         
                 </div>
             {{ Form::close() }}

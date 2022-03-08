@@ -46,7 +46,7 @@ student Tutorials timetable
                     
                       
                           <?php
-                              $Ttimes=array(8,9,10,11,12,13,14,15);
+                              $Ttimes=array(8,9,10,11,12,13,14,15,16,17,18,19,20);
                               $wdays=array('Sunday','Monday','Tuseday','Wednesday','Thursday','Friday','Satuday');
                               for ($i=0; $i < sizeof($Ttimes) ; $i++)
                               {
@@ -59,8 +59,23 @@ student Tutorials timetable
                                     foreach($lists as $list){
                                         if($Ttimes[$i]==$list->AvaliableCourse->time and $wdays[$x]==$list->AvaliableCourse->day)
                                         {
-                                            echo '<td class="bg-primary text-white"><a class="text-white" href="#">'.$list->AvaliableCourse->course->name.'</a></td>';
+                                          if($list->AvaliableCourse->link)
+                                          {
+
+                                         
+                                            echo '<td><div class="d-flex flex-column bg-info rounded"> 
+                                            <a class="text-dark" href="'.$list->AvaliableCourse->link.'" target="_blank"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
+                                            <div class="name">location : '.$list->AvaliableCourse->location.'</div>
+                                            <div class="name">link</div></a></div></td>';
                                             $avcourse=0;
+                                          }else
+                                          {
+                                            echo '<td><div class="d-flex flex-column bg-primary text-white rounded"> 
+                                            <a class="text-white" href="#"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
+                                            <div class="name">location : '.$list->AvaliableCourse->location.'</div>
+                                            </a></div></td>';
+                                            $avcourse=0;
+                                          }
                                         }
                                       }
                                     if($avcourse==1)

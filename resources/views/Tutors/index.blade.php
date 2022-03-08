@@ -41,6 +41,7 @@ current requests
                         <th>student</th>
                         <th>Day/Time</th>
                         <th>location</th>
+                        <th>Link</th>
                         <th>status</th>
                         <th>comments</th>
 
@@ -54,6 +55,11 @@ current requests
                                     <td>{{$list->student->fullname}} </td>
                                     <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
                                     <td>{{$list->AvaliableCourse->location}}</td>
+                                    @if($list->AvaliableCourse->link)
+                                      <td><a href="{{$list->AvaliableCourse->link}}" target="_blank">click here</a></td>
+                                    @else
+                                    <td></td>
+                                    @endif
                                     @if($list->accepted==0)
                                       <td>
                                       <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#status{{$list->id}}" title="satus"><i class="ri-add-circle-line"></i></button>
