@@ -62,7 +62,7 @@ current Tutorials
                                     <td>{{$list->date}}
                                     <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
                                     <td>{{$list->AvaliableCourse->location}}</td>
-                                    @if($list->AvaliableCourse->link)
+                                    @if($list->AvaliableCourse->link && $list->accepted==1)
                                       <td><a href="{{$list->AvaliableCourse->link}}" target="_blank">click here</a></td>
                                     @else
                                     <td></td>
