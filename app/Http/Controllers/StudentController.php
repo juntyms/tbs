@@ -450,7 +450,7 @@ class StudentController extends Controller
     }
 
 
-    #-----------------------------------------------------------------------------------------------------------------------------------------------------
+    #-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     public function booking_department_availablecourses($depid)
@@ -501,7 +501,7 @@ class StudentController extends Controller
 
         return view('student.booking.DepcourseTutor')->with('dep',$depid)
                                                      ->with('course',$course)
-                                                     ->with('lisbooked',$listTutorial)
+                                                     ->with('listbooked',$listTutorial)
                                                      ->with('avcourses',$avcourses);
     }
 
