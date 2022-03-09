@@ -61,13 +61,24 @@ student Tutorials timetable
                                         {
                                           if($list->AvaliableCourse->link)
                                           {
+                                            if($list->accepted==1)
+                                            {
+                                              echo '<td><div class="d-flex flex-column bg-info rounded"> 
+                                              <a class="text-dark" href="'.$list->AvaliableCourse->link.'" target="_blank"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
+                                              <div class="name">location : '.$list->AvaliableCourse->location.'</div>
+                                              <div class="name">click here</div></a></div></td>';
+                                              $avcourse=0;
+
+                                            }else{
+                                              echo '<td><div class="d-flex flex-column bg-info rounded"> 
+                                              <a class="text-dark" href="#"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
+                                              <div class="name">location : '.$list->AvaliableCourse->location.'</div>
+                                              <div class="name">link: <strong>wating Approval</strong></div></a></div></td>';
+                                              $avcourse=0;
+
+                                            }
 
                                          
-                                            echo '<td><div class="d-flex flex-column bg-info rounded"> 
-                                            <a class="text-dark" href="'.$list->AvaliableCourse->link.'" target="_blank"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
-                                            <div class="name">location : '.$list->AvaliableCourse->location.'</div>
-                                            <div class="name">link</div></a></div></td>';
-                                            $avcourse=0;
                                           }else
                                           {
                                             echo '<td><div class="d-flex flex-column bg-primary text-white rounded"> 

@@ -164,7 +164,6 @@ class AdminCourseController extends Controller
                 Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_staff'=>1,'is_student'=> 0]);
 
             }elseif ($request->usertype==2){ 
-                dd($request->usertype);
                 $user->assignRole('student-tutor');
                 Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_student'=> 1,'is_staff'=>0]);
 

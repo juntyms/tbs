@@ -25,7 +25,7 @@
                                     <div class="col-sm-10">
                                         
                                         <div class="form-check">
-                                            {{ Form::label('Stuff',null,['class'=>'form-check-label ']) }}
+                                            {{ Form::label('Staff',null,['class'=>'form-check-label ']) }}
                                             {{ Form::radio('usertype',1,['class'=>'form-check-input','checked'])}}
                                         
                                         </div>
@@ -47,7 +47,7 @@
                 <button type="button" class="btn btn-secondary"
                     data-bs-dismiss="modal">close</button>
                 <button type="submit"
-                    class="btn btn-success">sumbit</button>
+                    class="btn btn-success">Submit</button>
                 
             </div>
         </div>
