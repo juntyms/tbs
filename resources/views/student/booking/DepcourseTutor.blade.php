@@ -37,7 +37,7 @@ Booking Select Department
                         <br>
                         <img class="img" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
                         <div class="name">{{$ct->tutor->gettutorname->fullname}}</div> <br>
-                        @if($ct->tutor->gettutorname->is_student==1)
+                        @if($ct->tutor->is_student==1)
 
                             <div class="position">Peer Tutor </div> <br> 
                         @else
