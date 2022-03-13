@@ -138,7 +138,7 @@ class AdminCourseController extends Controller
     public function getutor()
     {
         $Dep_tutors=Tutor::where("department_id",Auth::User()->department_id)
-                          ->where('active',1)->cursorPaginate(7);
+                          ->where('active',1)->get();
         return view('user.showtutor')->with('Dep_tutors', $Dep_tutors);
     }
 
