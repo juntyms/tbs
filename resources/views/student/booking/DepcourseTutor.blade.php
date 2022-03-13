@@ -39,7 +39,7 @@ Booking Select Department
                         <div class="name">{{$ct->tutor->gettutorname->fullname}}</div> <br>
                         @if($ct->tutor->gettutorname->is_student==1)
 
-                            <div class="position">Student </div> <br> 
+                            <div class="position">Peer Tutor </div> <br> 
                         @else
                             <div class="position">Lecturer </div> <br>
                         @endif
