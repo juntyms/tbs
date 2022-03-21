@@ -148,34 +148,70 @@ class AdminCourseController extends Controller
         $this->validate($request, [
             'usertype' => 'required',
         ]);
-
-        $checkifExist=Tutor::firstwhere(['user_id'=>$id,'active'=>1]);
-        if(!$checkifExist)
+        $checkuser=User::firstwhere('id', $id);
+        if($checkuser)
         {
-            $user = User::find($id);
-            DB::table('model_has_roles')->where('model_id',$user->id)->delete();
-            $user->assignRole($request->input('roles'));
-            
-            if($request->usertype==1)
-            {
-               
-                $user->assignRole('tutor-role');
-            
-                Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_staff'=>1,'is_student'=> 0]);
 
-            }elseif ($request->usertype==2){ 
-                $user->assignRole('student-tutor');
-                Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_student'=> 1,'is_staff'=>0]);
+            $checkifExist=Tutor::firstwhere(['user_id'=>$id]);
+            if(!$checkifExist)
+            {
+                $user = User::find($id);
+                DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+                $user->assignRole($request->input('roles'));
+                
+                if($request->usertype==1)
+                {
+                
+                    $user->assignRole('tutor-role');
+                
+                    Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_staff'=>1,'is_student'=> 0]);
+
+                }elseif ($request->usertype==2){ 
+                    $user->assignRole('student-tutor');
+                    Tutor::create(['user_id'=>$id,'department_id'=>$dep,'is_student'=> 1,'is_staff'=>0]);
+
+                }
+                Alert::toast('Tutor Created successfully ','success');
+                return redirect()->route('user.tutor');
+            }else
+            {
+                if($checkifExist->active==0)
+                {
+                    $user = User::find($id);
+                    DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+                    $user->assignRole($request->input('roles'));
+                    
+                    if($request->usertype==1)
+                    {
+                    
+                        $user->assignRole('tutor-role');
+                    
+                        $checkifExist->update(['active'=>1]);
+    
+                    }elseif ($request->usertype==2){ 
+                        $user->assignRole('student-tutor');
+                        $checkifExist->update(['active'=>1]);
+    
+                    }
+                    Alert::toast('Tutor Created successfully ','success');
+                    return redirect()->route('user.tutor');
+                }
+                else{
+
+              
+                    Alert::toast('the Tutor is already exist!!','warning');
+                    return redirect()->back();
+                }
+
 
             }
-            Alert::toast('Tutor Created successfully ','success');
-            return redirect()->route('user.tutor');
-        }else
-        {
-            Alert::toast('the Tutor is already exist!!','warning');
+        }else{
+            Alert::toast('the Tutor is not exist!!','warning');
             return redirect()->back();
 
+
         }
+        
 
     }
 
@@ -192,9 +228,12 @@ class AdminCourseController extends Controller
             $Deltrequest_tutorial=Tutorial_request::where(['tutor_id'=>$detutor->id,'active'=>1])
                                                 ->where('accepted',0)
                                                 ->orWhere('accepted',1)->get();
+
+           
             $DeltAvaliable_course=Available_course::where(['tutor_id'=>$detutor->id,'active'=>1])->get();
-          
+           
             if(!$Deltrequest_tutorial->isEmpty()){
+              
                 foreach($Deltrequest_tutorial as $Rup)
                 {
                     $DeleteR=Tutorial_request::findOrFail($Rup->id);
@@ -204,6 +243,7 @@ class AdminCourseController extends Controller
                 
             }
             if(!$DeltAvaliable_course->isEmpty()){
+              
                 foreach($DeltAvaliable_course as $Dav)
                 {
                     $DeleteAv=Available_course::findOrFail($Dav->id);

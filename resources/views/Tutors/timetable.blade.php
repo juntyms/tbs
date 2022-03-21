@@ -59,8 +59,12 @@
                                     foreach($lists as $list){
                                         if($Ttimes[$i]==$list->time and $wdays[$x]==$list->day)
                                         {
-                                            echo '<td class="bg-primary text-white">';?> <a class="text-white" href="{{route('Tutor.tutorial.getlist',$list->id)}}">{{$list->course->name}}</a><?php echo '</td>';
-                                            $avcourse=0;
+                                
+                                          echo '<td><div class="d-flex flex-column bg-info rounded">';?>
+                                          <a class="text-dark" href="{{route('Tutor.tutorial.getlist',$list->id)}}"><div class="name">Course: {{$list->course->name}}</div>
+                                          <div class="name">location : {{$list->location}}</div>
+                                          <div class="name">view requests</div></a><?php echo '</td></div></td>';
+                                          $avcourse=0;
                                         }
                                       }
                                     if($avcourse==1)

@@ -77,7 +77,7 @@ class HomeController extends Controller
 
         }elseif($DepAdminUser)
         {
-            return redirect()->route('user.index');
+            return view('home');
 
         }elseif($TutorUser && $StudentUser)
         {
