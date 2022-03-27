@@ -3,7 +3,7 @@
     <div class="mymodal-header">
         <div class="row">
             <div class="col-11">
-                <h5 class="modal-title ps-3" id="exampleModalLabel">Tutorial status</h5>
+                <h5 class="modal-title ps-3" id="exampleModalLabel">Tutorial Status</h5>
             </div>
             <div  class="col-1 f-right" >
                 <button type="button" class="close f-right" data-bs-dismiss="modal" aria-label="Close">
@@ -55,7 +55,7 @@
                                         <div class="d-flex flex-column"> <span class="heading d-block">Department</span> <span class="subheadings">{{$list->student->department->name}}</span> </div>
                                     </td>
                                     <td>
-                                        <div class="d-flex flex-column"> <span class="heading d-block">email</span> <span class="subheadings">{{$list->student->email}}</span> </div>
+                                        <div class="d-flex flex-column"> <span class="heading d-block">Email</span> <span class="subheadings">{{$list->student->email}}</span> </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -69,17 +69,17 @@
         @if(@$list->accepted==0)
                                       
             <a href="{{route('Tutor.tutorial.status',['id'=>$list->id,'status'=>1])}}">
-                <button type="button" class="btn btn-success"><i class="fa fa-trash">approve</i></button>
+                <button type="button" class="btn btn-success"><i class="fa fa-trash">Approve</i></button>
             </a>
             <a href="{{route('Tutor.tutorial.status',['id'=>$list->id,'status'=>2])}}">
                 <button type="button" class="btn btn-success"><i class="fa fa-trash">Reject</i></button>
             </a>
         @elseif($list->accepted==1)
             <a href="{{route('Tutor.tutorial.status',['id'=>$list->id,'status'=>3])}}">
-                <button type="button" class="btn btn-success"><i class="fa fa-trash">completed</i></button>
+                <button type="button" class="btn btn-success"><i class="fa fa-trash">Completed</i></button>
             </a>
             <a href="{{route('Tutor.tutorial.status',['id'=>$list->id,'status'=>4])}}">
-                <button type="button" class="btn btn-success"><i class="fa fa-trash">incompleted</i></button>
+                <button type="button" class="btn btn-success"><i class="fa fa-trash">Incomplete</i></button>
             </a>
         @endif
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

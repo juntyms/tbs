@@ -11,11 +11,11 @@
                 <div class="panel-body">
                     <div class="card card-body mt-2">
                         <div class="form-floating mb-3 mt-3">
-                            {{ Form::text('username',$Dep_user->username,['class' => 'form-control','placeholder' => 'username','readonly']) }}
-                            {{ Form::label('username') }}
+                            {{ Form::text('username',$Dep_user->username,['class' => 'form-control','placeholder' => 'User Name','readonly']) }}
+                            {{ Form::label('User Name') }}
                         </div>
                         <div class="form-floating mb-3">
-                            {{ Form::text('name',$Dep_user->fullname,['class' => 'form-control','placeholder' => 'user Name','readonly']) }}
+                            {{ Form::text('name',$Dep_user->fullname,['class' => 'form-control','placeholder' => 'Fall Name','readonly']) }}
                             {{ Form::label('Full Name') }}
                             
                         </div>

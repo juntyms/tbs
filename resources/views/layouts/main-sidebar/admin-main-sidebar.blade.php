@@ -11,13 +11,13 @@
     @can('TBS-managment')
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#TBS_Main" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-menu-button-wide"></i><span>TBS system managment</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-menu-button-wide"></i><span>TBS System Managment</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="TBS_Main" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         @can('acadmicyear-list')
         <li>
           <a href="{{route('AcadmicY.index')}}">
-            <i class="bi bi-circle"></i><span>Acadmic years</span>
+            <i class="bi bi-circle"></i><span>Academic Years</span>
           </a>
         </li>
         @endcan
@@ -80,7 +80,7 @@
         @can('dep-AVcourse-list')
         <li>
           <a href="{{route('Acourse.index')}}">
-            <i class="bi bi-circle"></i><span>Avaliable Courses</span>
+            <i class="bi bi-circle"></i><span>Available Courses</span>
           </a>
         </li>
         @endcan

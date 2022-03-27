@@ -29,7 +29,7 @@
 current requests
 @endsection
 @section('PageTitle')
-<h3> Current Request Tutorials</h3>
+<h3> Current Requested Tutorials</h3>
 <nav>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
@@ -52,13 +52,13 @@ current requests
                     <thead>
                     <tr>
                         <th>Tutorial ID</th>
-                        <th> Course</th>
-                        <th>student</th>
+                        <th>Course</th>
+                        <th>Student</th>
                         <th>Day/Time</th>
-                        <th>location</th>
+                        <th>Location</th>
                         <th>Link</th>
-                        <th>status</th>
-                        <th>comments</th>
+                        <th>Status</th>
+                        <th>Comments</th>
 
                     </tr>
                     </thead>

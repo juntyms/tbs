@@ -3,7 +3,7 @@
 All requests
 @endsection
 @section('PageTitle')
-    <h3> All request Tutorials</h3>
+    <h3> All Requested Tutorials</h3>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
@@ -26,11 +26,11 @@ All requests
                     <thead>
                     <tr>
                         <th>Tutorial ID</th>
-                        <th> Course</th>
-                        <th>student Name</th>
+                        <th>Course</th>
+                        <th>Student Name</th>
                         <th>Day/Time</th>
-                        <th>location</th>
-                        <th>status</th>
+                        <th>Location</th>
+                        <th>Status</th>
                        
                     </tr>
                     </thead>
@@ -43,15 +43,15 @@ All requests
                                     <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
                                     <td>{{$list->AvaliableCourse->location}}</td>
                                     @if($list->accepted==0)
-                                      <td>wating approval</td>
+                                      <td>Waiting Approval</td>
                                     @elseif($list->accepted==1)
-                                      <td>approved</td>
+                                      <td>Approved</td>
                                       @elseif($list->accepted==2)
                                       <td>Rejected</td>
                                       @elseif($list->accepted==3)
-                                        <td>completed</td>
+                                        <td>Completed</td>
                                       @elseif($list->accepted==4)
-                                        <td>incompleted</td>
+                                        <td>Incomplete</td>
                                     @endif
                                 </tr>
 

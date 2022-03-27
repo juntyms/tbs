@@ -1,11 +1,10 @@
 <div class="row">
-<div class="col-md-12">
-    <div class="p-1 float-start">
-    <a href="https://api.whatsapp.com/send/?phone=%2B{{Auth::user()->phone}}&amp;text&amp;app_absent=0" target="_blank" class="linkedin">
-        <img src="{{asset('/storage/images/'.$tut_id->gettutorname->photo)}}" width="100" height="10" class="rounded-circle img-thumbnail"> <span class="d-block mt-3 font-weight-bold">{{$tut_id->gettutorname->fullname}}</span>
-    </a>    
+    <div class="col-md-12">
+        <div class="p-1 float-start">
+        <span><strong>{{$tut_id->gettutorname->fullname}}/{{$selectedCourse->name}}</strong></span>
+        
+        </div>
     </div>
-</div>
 </div>
 <div class="table-responsive">
     <table class="table table-bordered border-dark table-striped">
@@ -15,11 +14,11 @@
             <th>Time</th>
             <th>Sunday </th>
             <th>Monday</th>
-            <th>Tuseday</th>
+            <th>Tuesday</th>
             <th>Wednesday</th>
-            <th>Thrusday</th>
+            <th>Thursday</th>
             <th>Friday</th>
-            <th>Satuday</th>
+            <th>Saturday</th>
             
         </tr>
         </thead>

@@ -3,11 +3,11 @@
  requests timetable
 @endsection
 @section('PageTitle')
-    <h3>Request tutorials timetable</h3>
+    <h3>Requested Tutorial Timetable</h3>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('Tutor.tutorial.timetable')}}">timetable</a></li>
+          <li class="breadcrumb-item"><a href="{{route('Tutor.tutorial.timetable')}}">Timetable</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -20,7 +20,7 @@
       <div class="card">
               <div class="card-body">
               <h5 class="card-title">
-                Tutorial timetable
+                Tutorial Timetable
               </h5>
               </h5>
               <!-- Table with stripped rows -->
@@ -34,11 +34,11 @@
                           <th>Time</th>
                           <th>Sunday </th>
                           <th>Monday</th>
-                          <th>Tuseday</th>
+                          <th>Tuesday</th>
                           <th>Wednesday</th>
-                          <th>Thrusday</th>
+                          <th>Thursday</th>
                           <th>Friday</th>
-                          <th>Satuday</th>
+                          <th>Saturday</th>
                           
                       </tr>
                       </thead>
@@ -62,8 +62,8 @@
                                 
                                           echo '<td><div class="d-flex flex-column bg-info rounded">';?>
                                           <a class="text-dark" href="{{route('Tutor.tutorial.getlist',$list->id)}}"><div class="name">Course: {{$list->course->name}}</div>
-                                          <div class="name">location : {{$list->location}}</div>
-                                          <div class="name">view requests</div></a><?php echo '</td></div></td>';
+                                          <div class="name">Location : {{$list->location}}</div>
+                                          <div class="name"><strong>View Requests</strong></div></a><?php echo '</td></div></td>';
                                           $avcourse=0;
                                         }
                                       }

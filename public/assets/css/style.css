@@ -1337,3 +1337,13 @@ float: right;
   line-height: 24px;
   margin: 15px 0 8px;
 }
+.btnclick {
+	color: #fff;
+	background-color: #2672EC;
+	float: center;
+	border-radius: 4px;
+	padding: 5px;
+	float: center;
+	font-weight: 600;
+  margin-bottom: 10px;
+}

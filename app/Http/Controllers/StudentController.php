@@ -56,7 +56,7 @@ class StudentController extends Controller
                             ->where('available_courses.active',1)
                             ->whereColumn('available_courses.course_id', 'courses.id'); })->pluck("name", "id");
         
-        return view('student.booking.selectbooking')->with('dep',$depid)
+        return view('student.booking.Selected.Selectoption')->with('dep',$depid)
                                                         ->with('show1',$show_TutorCourses)
                                                         ->with('show2',$show_CourseTutors)
                                                         ->with('show3',$show_TutorCourse)
@@ -74,8 +74,18 @@ class StudentController extends Controller
                     $query->select(DB::raw(1))
                             ->from('tutors')
                             ->where('tutors.active',1)
+                            ->whereExists(function ($query) {
+                                $query->select(DB::raw(1))
+                                      ->from('available_courses')
+                                      ->where('available_courses.active',1)
+                                      ->whereColumn('available_courses.tutor_id', 'tutors.id');
+                            })
                             ->whereColumn('tutors.user_id', 'users.id');})->get();
-    
+
+
+        
+
+        return response()->json($Serchtutor);
        
             
     
@@ -105,6 +115,9 @@ class StudentController extends Controller
         $show_TutorCourses=False;
         $show_CourseTutors=False;
         $show_TutorCourse=False;
+        $vshow1="";
+        $vshow2="";
+        $vshow3="active";
 
         $Serchtutor = [];
         $courses = [];  
@@ -123,7 +136,15 @@ class StudentController extends Controller
                         ->from('available_courses')
                         ->where('available_courses.active',1)
                         ->whereColumn('available_courses.course_id', 'courses.id'); })->pluck("name", "id");
-    
+
+        $Dep_AVCourses =Course::where('department_id',$depid->id)
+                            ->whereExists(function ($query){
+                                            $query->select(DB::raw(1))
+                                            ->from('available_courses')
+                                            ->where('available_courses.active',1)
+                                            ->whereColumn('available_courses.course_id', 'courses.id'); })->distinct()
+                                            ->get();
+        
 
         if($Aay_id)
         {
@@ -148,7 +169,7 @@ class StudentController extends Controller
                 $show_TutorCourses=False;
                 $show_CourseTutors=False;
                 $show_TutorCourse=TRUE;
-                return view('student.booking.selectbooking')->with('dep',$depid)
+                return view('student.booking.Selected.Selectoption')->with('dep',$depid)
                                                             ->with('tut_id',$tutorid)
                                                             ->with('booking_TutCourse',$booking_TutCourse)
                                                             ->with('show1',$show_TutorCourses)
@@ -156,7 +177,11 @@ class StudentController extends Controller
                                                             ->with('show3',$show_TutorCourse)
                                                             ->with('booked',$listTutorial)
                                                             ->with('Serchtutor',$Serchtutor)
-                                                            ->with('courses',$courses);
+                                                            ->with('courses',$courses)
+                                                            ->with('vshow1',$vshow1)
+                                                            ->with('vshow2',$vshow2)
+                                                            ->with('vshow3',$vshow3)
+                                                            ->with('Dep_AVCourses',$Dep_AVCourses);
                     
     
     
@@ -179,14 +204,18 @@ class StudentController extends Controller
                 $show_CourseTutors=True;
                 $show_TutorCourse=False;
 
-                return view('student.booking.selectbooking')->with('dep',$depid)
+                return view('student.booking.Selected.Selectoption')->with('dep',$depid)
                                                             ->with('booking_TutCourse',$booking_TutCourse)
                                                             ->with('show1',$show_TutorCourses)
                                                             ->with('show2',$show_CourseTutors)
                                                             ->with('show3',$show_TutorCourse)
                                                             ->with('booked',$listTutorial)
                                                             ->with('Serchtutor',$Serchtutor)
-                                                            ->with('courses',$courses);
+                                                            ->with('courses',$courses)
+                                                            ->with('vshow1',$vshow1)
+                                                            ->with('vshow2',$vshow2)
+                                                            ->with('vshow3',$vshow3)
+                                                            ->with('Dep_AVCourses',$Dep_AVCourses);
 
                
     
@@ -210,7 +239,7 @@ class StudentController extends Controller
                 $show_TutorCourses=TRUE;
                 $show_CourseTutors=False;
                 $show_TutorCourse=False;
-                return view('student.booking.selectbooking')->with('dep',$depid)
+                return view('student.booking.Selected.Selectoption')->with('dep',$depid)
                                                             ->with('tut_id',$tutorid)
                                                             ->with('booking_TutCourse',$booking_TutCourse)
                                                             ->with('show1',$show_TutorCourses)
@@ -218,18 +247,26 @@ class StudentController extends Controller
                                                             ->with('show3',$show_TutorCourse)
                                                             ->with('booked',$listTutorial)
                                                             ->with('Serchtutor',$Serchtutor)
-                                                            ->with('courses',$courses);
+                                                            ->with('courses',$courses)
+                                                            ->with('vshow1',$vshow1)
+                                                            ->with('vshow2',$vshow2)
+                                                            ->with('vshow3',$vshow3)
+                                                            ->with('Dep_AVCourses',$Dep_AVCourses);
     
     
             }
             else{
 
-                return view('student.booking.selectbooking')->with('dep',$depid)
+                return view('student.booking.Selected.Selectoption')->with('dep',$depid)
                                                             ->with('show1',$show_TutorCourses)
                                                             ->with('show2',$show_CourseTutors)
                                                             ->with('show3',$show_TutorCourse)
                                                             ->with('Serchtutor',$Serchtutor)
-                                                            ->with('courses',$courses);
+                                                            ->with('courses',$courses)
+                                                            ->with('vshow1',$vshow1)
+                                                            ->with('vshow2',$vshow2)
+                                                            ->with('vshow3',$vshow3)
+                                                            ->with('Dep_AVCourses',$Dep_AVCourses);
 
 
 
@@ -238,12 +275,16 @@ class StudentController extends Controller
         }
         else{
 
-            return view('student.booking.selectbooking')->with('dep',$depid)
+            return view('student.booking.Selected.Selectoption')->with('dep',$depid)
                                                         ->with('show1',$show_TutorCourses)
                                                         ->with('show2',$show_CourseTutors)
                                                         ->with('show3',$show_TutorCourse)
                                                         ->with('Serchtutor',$Serchtutor)
-                                                        ->with('courses',$courses);
+                                                        ->with('courses',$courses)
+                                                        ->with('vshow1',$vshow1)
+                                                        ->with('vshow2',$vshow2)
+                                                        ->with('vshow3',$vshow3)
+                                                        ->with('Dep_AVCourses',$Dep_AVCourses);
 
         }
 
@@ -503,6 +544,56 @@ class StudentController extends Controller
                                                      ->with('course',$course)
                                                      ->with('listbooked',$listTutorial)
                                                      ->with('avcourses',$avcourses);
+    }
+
+
+
+    public function selectoption($id)
+    {
+        $show_TutorCourses=False;
+        $show_CourseTutors=False;
+        $show_TutorCourse=False;
+        $vshow1="";
+        $vshow2="";
+        $vshow3="active";
+        $depid=Department::firstwhere('id',$id);
+
+        $Serchtutor = [];
+        $courses = [];       
+        $Serchtutor =User::where('department_id',$depid->id)
+                         ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                            ->from('tutors')
+                            ->where('tutors.active',1)
+                            ->whereColumn('tutors.user_id', 'users.id');})->pluck("fullname", "id");
+       
+        $courses =Course::where('department_id',$depid->id)
+                            ->whereExists(function ($query){
+                    $query->select(DB::raw(1))
+                            ->from('available_courses')
+                            ->where('available_courses.active',1)
+                            ->whereColumn('available_courses.course_id', 'courses.id'); })->pluck("name", "id");
+        
+        
+        $Dep_AVCourses =Course::where('department_id',$depid->id)
+                ->whereExists(function ($query){
+                                $query->select(DB::raw(1))
+                                ->from('available_courses')
+                                ->where('available_courses.active',1)
+                                ->whereColumn('available_courses.course_id', 'courses.id'); })->distinct()
+                                ->get();
+
+        return view('student.booking.Selected.Selectoption')->with('dep',$depid)
+                                                        ->with('show1',$show_TutorCourses)
+                                                        ->with('show2',$show_CourseTutors)
+                                                        ->with('show3',$show_TutorCourse)
+                                                        ->with('Serchtutor',$Serchtutor)
+                                                        ->with('courses',$courses)
+                                                        ->with('vshow1',$vshow1)
+                                                        ->with('vshow2',$vshow2)
+                                                        ->with('vshow3',$vshow3)
+                                                        ->with('Dep_AVCourses',$Dep_AVCourses);
+       
     }
 
 

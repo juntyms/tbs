@@ -13,11 +13,11 @@ current Tutorials
   <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('PageTitle')
-    <h3>current Tutorials</h3>
+    <h3>Current Tutorials</h3>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('student.tutorial.list')}}">current Tutorials</a></li>
+          <li class="breadcrumb-item"><a href="{{route('student.tutorial.list')}}">Current Tutorials</a></li>
         </ol>
       </nav>
    
@@ -31,7 +31,7 @@ current Tutorials
             <div class="card-body">
               <h5 class="card-title">
                 <a href="{{route('student.booking.Department')}}" class="btn btn-success btn-sm">
-                  book Tutorial
+                  Book Tutorial
                 </a>
               </h5>
               <!-- Table with stripped rows -->
@@ -45,10 +45,10 @@ current Tutorials
                         <th>Tutor Name</th>
                         <th>Date</th>
                         <th>Day/Time</th>
-                        <th>location</th>
-                        <th>link</th>
-                        <th>status</th>
-                        <th>comments</th>
+                        <th>Location</th>
+                        <th>Link</th>
+                        <th>Status</th>
+                        <th>Comments</th>
                         <th></th>
 
                     </tr>

@@ -7,7 +7,7 @@ Edit user
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{ route('users.index') }}">users</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
           <li class="breadcrumb-item"><a href="#">Edit</a></li>
         </ol>
       </nav>
@@ -56,7 +56,7 @@ Edit user
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>fullname:</strong>
+                            <strong>Full Name:</strong>
                             {!! Form::text('fullname', null, array('placeholder' => 'fullname','class' => 'form-control')) !!}
                         </div>
                     </div>

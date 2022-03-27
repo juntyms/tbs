@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title">Update Acadmic Year</h5>
+            <h5 class="modal-title">Update Academic Year</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -15,8 +15,8 @@
                         {{ Form::label('ID') }}
                     </div>
                     <div class="form-floating mb-3">
-                        {{ Form::text('name',$AD_year->name,['class' => 'form-control','placeholder' => 'Acadmic Year']) }}
-                        {{ Form::label('Acadmic Year') }}
+                        {{ Form::text('name',$AD_year->name,['class' => 'form-control','placeholder' => 'Academic Year']) }}
+                        {{ Form::label('Academic Year') }}
                         
                     </div>
                     <div class="form-group col col-lg-6">
@@ -36,7 +36,7 @@
                                 {{ Form::label(' Deactivate ') }}
                                 {{ Form::radio('status',0,['class'=>'form-check-input',])}}
                             @else
-                                {{ Form::label(' Daactivate ') }}
+                                {{ Form::label(' Deactivate ') }}
                                 {{ Form::radio('status',0)}}
                             @endif
                            

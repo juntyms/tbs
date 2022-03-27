@@ -3,7 +3,7 @@
 Booking Select Department
 @endsection
 @section('PageTitle')
-    <h3>Availabele Course : Tutor </h3>
+    <h3><strong>{{$dep->name}}</strong>:<span> Available Course</span></h3>
       
     
 @endsection
@@ -31,12 +31,12 @@ Booking Select Department
             @endif
 
             @if($x==1)
-                <figure class="team-member btn-sm col-md-3 col-sm-6 col-xs-12 text-center" data-bs-toggle="modal" data-bs-target="#addcourse{{$ct->id}}">
-                    <div class="box">
+                <figure class="team-member btn-sm col-md-3 col-sm-6 col-xs-12 text-center" style="background-color:#084C61;">
+                    <div class="box" style="background-color:#084C61;">
 
                         <br>
                         <img class="img" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
-                        <div class="name">{{$ct->tutor->gettutorname->fullname}}</div> <br>
+                        <div class="name text-white">{{$ct->tutor->gettutorname->fullname}}</div> <br>
                         @if($ct->tutor->is_student==1)
 
                             <div class="position">Peer Tutor </div> <br> 
@@ -46,7 +46,9 @@ Booking Select Department
 
                         
                         <div class="location">{{$ct->time}}.00-{{$ct->time+1}}.00 | {{$ct->day}}</div> <br> 							
-                        <div class="location">ON CAMPUS {{$ct->location}} </div> <br> 	
+                        <div class="location">ON CAMPUS {{$ct->location}} </div> <br> 
+                        <div class="location"> <a class="btnclick" style="background-color:#177E89;" data-bs-toggle="modal" data-bs-target="#addcourse{{$ct->id}}" href="">Booking</a></div>	
+                        <br>
                     </div>
 
                 </figure>
@@ -61,12 +63,12 @@ Booking Select Department
 
             
             @else
-                <figure class="team-member btn-sm col-md-3 col-sm-6 col-xs-12 text-center" data-bs-toggle="modal" data-bs-target="#addcourse{{$ct->id}}">
-                    <div class="box">
+                <figure class="team-member btn-sm col-md-3 col-sm-6 col-xs-12 text-center" style="background-color:#084C61;">
+                    <div class="box" style="background-color:#084C61;">
 
                         <br>
                         <img class="img" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
-                        <div class="name">{{$ct->tutor->gettutorname->fullname}}</div> <br>
+                        <div class="name text-white">{{$ct->tutor->gettutorname->fullname}}</div> <br>
                         @if($ct->tutor->is_student==1)
 
                             <div class="position">Peer Tutor </div> <br> 
@@ -77,6 +79,8 @@ Booking Select Department
                         
                         <div class="location">{{$ct->time}}.00-{{$ct->time+1}}.00 | {{$ct->day}}</div> <br> 							
                         <div class="location">ON CAMPUS {{$ct->location}} </div> <br> 	
+                        <div class="location"> <a href="" class="btnclick" style="background-color:#177E89;" data-bs-toggle="modal" data-bs-target="#addcourse{{$ct->id}}">Booking</a></div>
+                        <br> 
                     </div>
 
                 </figure>

@@ -3,11 +3,11 @@
 Avaliable courses
 @endsection
 @section('PageTitle')
-<h3>{{Auth::user()->department->name}}: Avaliable Courses</h3>
+<h3>{{Auth::user()->department->name}}: Available Courses</h3>
 <nav>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{route('Acourse.index')}}">Avaliable course</a></li>
+    <li class="breadcrumb-item"><a href="{{route('Acourse.index')}}">Available Course</a></li>
   </ol>
 </nav>
 
@@ -21,7 +21,7 @@ Avaliable courses
       <div class="card-body">
         <h5 class="card-title">
           <a href="{{route('Addcourse.index')}}" class="btn btn-success btn-sm" role="button" aria-pressed="true">
-            Add Avaliable course
+            Add Available Course
           </a>
         </h5>
         <!-- Table with stripped rows -->
@@ -33,7 +33,7 @@ Avaliable courses
                 <th>Course</th>
                 <th>Tutor </th>
                 <th>Department</th>
-                <th>location</th>
+                <th>Location</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Action</th>

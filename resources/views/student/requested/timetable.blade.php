@@ -3,11 +3,11 @@
 student Tutorials timetable 
 @endsection
 @section('PageTitle')
-    <h3>Tutorials timetable </h3>
+    <h3>Tutorial Timetable </h3>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('student.tutorial.timetable')}}">timetable</a></li>
+          <li class="breadcrumb-item"><a href="{{route('student.tutorial.timetable')}}">Timetable</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -20,7 +20,7 @@ student Tutorials timetable
       <div class="card">
               <div class="card-body">
               <h5 class="card-title">
-                Tutorial timetable
+                Tutorial Timetable
               </h5>
               </h5>
               <!-- Table with stripped rows -->
@@ -34,11 +34,11 @@ student Tutorials timetable
                           <th>Time</th>
                           <th>Sunday </th>
                           <th>Monday</th>
-                          <th>Tuseday</th>
+                          <th>Tuesday</th>
                           <th>Wednesday</th>
-                          <th>Thrusday</th>
+                          <th>Thursday</th>
                           <th>Friday</th>
-                          <th>Satuday</th>
+                          <th>Saturday</th>
                           
                       </tr>
                       </thead>
@@ -72,8 +72,8 @@ student Tutorials timetable
                                             }else{
                                               echo '<td><div class="d-flex flex-column bg-info rounded"> 
                                               <a class="text-dark" href="#"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
-                                              <div class="name">location : '.$list->AvaliableCourse->location.'</div>
-                                              <div class="name">link: <strong>wating Approval</strong></div></a></div></td>';
+                                              <div class="name">Location : '.$list->AvaliableCourse->location.'</div>
+                                              <div class="name">Link: <strong>wating Approval</strong></div></a></div></td>';
                                               $avcourse=0;
 
                                             }
@@ -83,7 +83,7 @@ student Tutorials timetable
                                           {
                                             echo '<td><div class="d-flex flex-column bg-primary text-white rounded"> 
                                             <a class="text-white" href="#"><div class="name">'.$list->AvaliableCourse->course->name.'</div>
-                                            <div class="name">location : '.$list->AvaliableCourse->location.'</div>
+                                            <div class="name">Location : '.$list->AvaliableCourse->location.'</div>
                                             </a></div></td>';
                                             $avcourse=0;
                                           }

@@ -1,3 +1,11 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="p-1 float-start">
+        <span><strong>{{$selectedCourse->name}}</strong></span>
+        
+        </div>
+    </div>
+</div>
 <div class="table-responsive">
     <table class="table table-bordered border-dark table-striped">
 
@@ -6,11 +14,11 @@
             <th>Time</th>
             <th>Sunday </th>
             <th>Monday</th>
-            <th>Tuseday</th>
+            <th>Tuesday</th>
             <th>Wednesday</th>
-            <th>Thrusday</th>
+            <th>Thursday</th>
             <th>Friday</th>
-            <th>Satuday</th>
+            <th>Saturday</th>
             
         </tr>
         </thead>

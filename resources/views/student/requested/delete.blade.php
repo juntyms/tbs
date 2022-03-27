@@ -8,7 +8,7 @@
 		</div>
 		<div class="modal-body text-center">
 			<h4>Ooops!</h4>	
-			<p>Are your sure to delete the Tutorial seesion for the  course: {{$list->AvaliableCourse->course->name}} !!</p>
+			<p>Are you sure you want to delete the tutorial session for the course {{$list->AvaliableCourse->course->name}}?</p>
 			<a href="{{route('student.request.delete',$list->id)}}"> <button type="button" class="btn btn-danger"><i class="fa fa-trash">Confirm</i></button></a>
 			
 

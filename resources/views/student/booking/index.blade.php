@@ -3,7 +3,7 @@
 Booking Select Department
 @endsection
 @section('PageTitle')
-<h3>booking Tutorial: Select Department </h3>
+<h3>Booking Tutorial: Select Department </h3>
 <nav>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
@@ -18,7 +18,7 @@ Booking Select Department
 
   @if($dep->Available()->where('available_courses.active',1)->count()>0)
 
-  <a class="col-md-6 col-xl-3" href="{{route('deplistAv',$dep)}}">
+  <a class="col-md-6 col-xl-3" href="{{route('booking.option',$dep)}}">
     <div class="card bg-c-blue order-card">
       <div class="card-block">
         <h6 class="m-b-20">{{$dep->name}} </h6>
