@@ -31,13 +31,13 @@
                     
                 </div>
                 @if($show1)
-                    @include('livewire.Selected.course')
+                    @include('livewire.selected.course')
 
                 @elseif($show2)
-                    @include('livewire.Selected.tutor')
+                    @include('livewire.selected.tutor')
 
                 @elseif($show3)
-                    @include('livewire.Selected.CourseTutor')
+                    @include('livewire.selected.CourseTutor')
 
                 @endif
                 <!-- Table with stripped rows -->
