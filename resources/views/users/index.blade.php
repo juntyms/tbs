@@ -8,7 +8,7 @@ users
       <nav>
         <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{ route('users.index') }}">users</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
         </ol>
       </nav>
    
@@ -42,9 +42,9 @@ users
 
                   <tr>
                     <th>No</th>
-                    <th>username</th>
+                    <th>User Name</th>
                     <th>Email</th>
-                    <th>fullName</th>
+                    <th>Full Name</th>
                     <th>Department</th>
                     <th>Roles</th>
                     <th width="300px">Action</th>

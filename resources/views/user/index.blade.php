@@ -7,7 +7,7 @@ Department users
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('user.index')}}">Department users</a></li>
+          <li class="breadcrumb-item"><a href="{{route('user.index')}}">Department Users</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -39,11 +39,11 @@ Department users
 
                     <thead>
                     <tr>
-                        <th>username</th>
+                        <th>User Name</th>
                         <th>Name</th>
-                        <th>email</th>
+                        <th>Email</th>
                         <th>Department</th>
-                        <th>created_at</th>
+                        <th>Created_at</th>
                         <th>Action</th>
                     </tr>
                     </thead>

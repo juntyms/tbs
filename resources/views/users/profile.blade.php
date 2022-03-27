@@ -7,7 +7,7 @@ Profile
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('user.profile')}}">profile</a></li>
+          <li class="breadcrumb-item"><a href="{{route('user.profile')}}">Profile</a></li>
         </ol>
       </nav>
     

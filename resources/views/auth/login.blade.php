@@ -51,14 +51,14 @@
 
                                 <div class="pt-4 pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">Login to TBS</h5>
-                                    <p class="text-center small">Enter your username & password to login</p>
+                                    <p class="text-center small">Enter your username and password to login</p>
                                 </div>
 
                                 <form class="row g-3 needs-validation" novalidate method="POST" action="{{ route('login') }}">
                                 @csrf
 
                                     <div class="col-12">
-                                        <label for="yourUsername" class="form-label">username</label>
+                                        <label for="yourUsername" class="form-label">Username</label>
                                         <div class="input-group has-validation">
                                             <input  type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" value="{{ old('username')}}" required autocomplete="username" autofocus>
                                             @error('username')

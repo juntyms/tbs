@@ -3,11 +3,11 @@
 Acadmic Year
 @endsection
 @section('PageTitle')
-    <h1>Acadmic Years</h1>
+    <h1>Academic Years</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{route('AcadmicY.index')}}">Acadmic Years</a></li>
+          <li class="breadcrumb-item"><a href="{{route('AcadmicY.index')}}">Academic Years</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -22,7 +22,7 @@ Acadmic Year
               <h5 class="card-title">
               <a href="#" class="btn btn-success btn-sm" role="button" aria-pressed="true"
               data-bs-toggle="modal" data-bs-target="#Addmodal">
-                  Add Acadmic Year
+                  Add Academic Year
                 </a>
               </h5>
               <div class="modal fade" id="Addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

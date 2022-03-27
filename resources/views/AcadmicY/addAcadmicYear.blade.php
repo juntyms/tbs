@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title">Add Acadmic year </h5>
+            <h5 class="modal-title">Add Academic Year </h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -12,8 +12,8 @@
                 
                     <div class="card card-body">
                         <div class="form-floating mb-3">
-                            {{ Form::text('yearname',null,['class' => 'form-control','placeholder' => 'Acadmic year',]) }}
-                            {{ Form::label('Acadmic year') }}
+                            {{ Form::text('yearname',null,['class' => 'form-control','placeholder' => 'Academic Year',]) }}
+                            {{ Form::label('Academic Year') }}
                         </div>
                         
                         <div class="form-group col col-lg-6">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                    <button type="submit" class="btn btn-success">sumbit</button>
+                    <button type="submit" class="btn btn-success">submit</button>
                     
                 </div>
             {{ Form::close() }}

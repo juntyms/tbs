@@ -7,8 +7,8 @@ show user
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-          <li class="breadcrumb-item"><a href="{{ route('users.index') }}">users</a></li>
-          <li class="breadcrumb-item"><a href="#">show</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
+          <li class="breadcrumb-item"><a href="#">Show</a></li>
         </ol>
       </nav>
     

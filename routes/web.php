@@ -99,4 +99,6 @@ Route::get('/{page}', 'SuperController@index')->name('superuserpage');
 
 Route::get('/dashboard/booking/department/{depid}/listAvCourse',[StudentController::class, 'booking_department_availablecourses'])->name('deplistAv');
 Route::get('/dashboard/booking/department/{depid}/AvCourse/{course}/tutors',[StudentController::class, 'booking_department_availablecourses_tutor'])->name('AvlisTu');
+
+Route::get('/dashboard/booking/department/{depid}/selectoption',[StudentController::class, 'selectoption'])->name('booking.option');
 });

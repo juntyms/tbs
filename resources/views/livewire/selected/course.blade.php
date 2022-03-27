@@ -1,12 +1,12 @@
 <div class="row">
 <div class="col-md-12">
     <div class="p-1 float-start">
-    <a href="https://api.whatsapp.com/send/?phone=%2B{{Auth::user()->phone}}&amp;text&amp;app_absent=0" target="_blank" class="linkedin">
-        <img src="{{asset('/storage/images/'.$tut_id->gettutorname->photo)}}" width="100" height="10" class="rounded-circle img-thumbnail"> <span class="d-block mt-3 font-weight-bold">{{$tut_id->gettutorname->fullname}}</span>
-    </a>    
+    <span><strong>{{$tut_id->gettutorname->fullname}}</strong></span>
+     
     </div>
 </div>
 </div>
+
 <div class="table-responsive">
     <table class="table table-bordered border-dark table-striped">
 
@@ -15,11 +15,11 @@
             <th>Time</th>
             <th>Sunday </th>
             <th>Monday</th>
-            <th>Tuseday</th>
+            <th>Tuesday</th>
             <th>Wednesday</th>
-            <th>Thrusday</th>
+            <th>Thursday</th>
             <th>Friday</th>
-            <th>Satuday</th>
+            <th>Saturday</th>
             
         </tr>
         </thead>
@@ -28,7 +28,7 @@
         
             <?php
                 $Ttimes=array(8,9,10,11,12,13,14,15);
-                $wdays=array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+                $wdays=array('Sunday','Monday','Tuseday','Wednesday','Thursday','Friday','Satuday');
                 for ($i=0; $i < sizeof($Ttimes) ; $i++)
                 {
                 echo '<tr>';
@@ -48,10 +48,11 @@
                                         {
                                             $checkbooking=1;
                                             $avcourse=0;
+                                            
                                             echo '<td><button type="button" class="btn btn-primary" style="height:80px; width:95px;"
                                             
                                             data-bs-toggle="modal" data-bs-target="#addcourse'.$Ttimes[$i].$wdays[$x].'" title="Delete "><h6 class="m-b-20">'.$ct->course->name.'</h6></button>';
-                                            
+                                        
                                             echo '<div class="modal fade" id="addcourse'.$Ttimes[$i].$wdays[$x].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
                                         
                                                 ?>@include('student.booking.Selected.alreadybooked')<?php
@@ -59,23 +60,21 @@
                                             echo '</td>';
                                         }
                                     }
-                                }
-                                if($checkbooking==0)
-                                {
-                                    $avcourse=0;
-                                    echo '<td><button type="button" class="btn btn-primary" style="height:80px; width:95px;"
+                                    if($checkbooking==0)
+                                    {
+                                        $avcourse=0;
+                                        
+                                        echo '<td><button type="button" class="btn btn-primary" style="height:80px; width:95px;"
+                                        
+                                        data-bs-toggle="modal" data-bs-target="#addcourse'.$Ttimes[$i].$wdays[$x].'" title="Delete "><h6 class="m-b-20">'.$ct->course->name.'</h6></button>';
                                     
-                                    data-bs-toggle="modal" data-bs-target="#addcourse'.$Ttimes[$i].$wdays[$x].'" title="Delete "><h6 class="m-b-20">'.$ct->course->name.'</h6></button>';
+                                        echo '<div class="modal fade" id="addcourse'.$Ttimes[$i].$wdays[$x].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
                                     
-                                    echo '<div class="modal fade" id="addcourse'.$Ttimes[$i].$wdays[$x].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-                                
-                                        ?>@include('student.booking.Selected.Add')<?php
-                                    echo '</div>';
-                                    echo '</td>';
-
+                                            ?>@include('student.booking.Selected.Add')<?php
+                                        echo '</div>';
+                                        echo '</td>';
+                                    }
                                 }
-                                
-
                             }
                         }
                         if($avcourse==1)

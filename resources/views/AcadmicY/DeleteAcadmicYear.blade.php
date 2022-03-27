@@ -8,7 +8,7 @@
 		</div>
 		<div class="modal-body text-center">
 			<h4>Ooops!</h4>	
-			<p>Are your sure to delete the Acadmic Year : <strong>{{$AD_year->name}} !!</strong></p>
+			<p>Are you sure you want to delete the Academic Year  <strong>{{$AD_year->name}}? </strong></p>
 			<a href="{{route('AcadmicY.deleteADyear',$AD_year->id)}}"> <button type="button" class="btn btn-danger"><i class="fa fa-trash">Confirm</i></button></a>
 			
 
