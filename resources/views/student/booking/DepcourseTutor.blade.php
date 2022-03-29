@@ -35,7 +35,7 @@ Booking Select Department
                     <div class="box" style="background-color:#084C61;">
 
                         <br>
-                        <img class="img" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
+                        <img class="img rounded-circle h-50 w-50" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
                         <div class="name text-white">{{$ct->tutor->gettutorname->fullname}}</div> <br>
                         @if($ct->tutor->is_student==1)
 
@@ -67,7 +67,7 @@ Booking Select Department
                     <div class="box" style="background-color:#084C61;">
 
                         <br>
-                        <img class="img" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
+                        <img class="rounded-circle h-50 w-50" src="{{asset('/storage/images/'.$ct->tutor->gettutorname->photo)}}">
                         <div class="name text-white">{{$ct->tutor->gettutorname->fullname}}</div> <br>
                         @if($ct->tutor->is_student==1)
 

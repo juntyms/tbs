@@ -86,18 +86,21 @@ class HomeController extends Controller
                                         ->whereExists(function($query){
                                                 $query->where('accepted',0)
                                                     ->orWhere('accepted',1);})->get();
-
+           
             if($listTutorial)
             {
                 foreach($listTutorial as $list)
                 {
                     if($list->date<$currentdate)
                     {
+                        
                         $list->update(['accepted'=>4]);
                     }elseif($list->date==$currentdate)
                     {
-                        if($list->time<$currenthour)
+                        
+                        if($list->AvaliableCourse->time<$currenthour)
                         {
+                            
                             $list->update(['accepted'=>4]);
 
                         }
@@ -121,11 +124,14 @@ class HomeController extends Controller
                     {
                         if($list->date<$currentdate)
                         {
+                           
                             $list->update(['accepted'=>4]);
                         }elseif($list->date==$currentdate)
                         {
-                            if($list->time<$currenthour)
+                            
+                            if($list->AvaliableCourse->time<$currenthour)
                             {
+                                
                                 $list->update(['accepted'=>4]);
 
                             }
@@ -136,8 +142,7 @@ class HomeController extends Controller
 
 
             
-            return view('home');
-
+            return redirect()->route('tutordashboard');
         }elseif($StudentUser)
         {
             $listTutorial=Tutorial_request::where('user_id',Auth::User()->id)
@@ -166,7 +171,7 @@ class HomeController extends Controller
 
 
             
-            return view('home');
+            return redirect()->route('studentdashboard');
 
         }elseif($TutorUser)
         {
@@ -188,7 +193,7 @@ class HomeController extends Controller
                             $list->update(['accepted'=>4]);
                         }elseif($list->date==$currentdate)
                         {
-                            if($list->time<$currenthour)
+                            if($list->AvaliableCourse->time<$currenthour)
                             {
                                 $list->update(['accepted'=>4]);
 
@@ -197,7 +202,7 @@ class HomeController extends Controller
                     }
                 }
             }
-            return view('home');
+            return redirect()->route('tutordashboard');
 
         }else{
             Auth::logout();

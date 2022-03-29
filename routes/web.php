@@ -81,6 +81,9 @@ Route::get('/dashboard/tutor/tutorials/all',[TutorController::class,'Alltutorial
 Route::get('/dashboard/tutor/tutorials/timetable',[TutorController::class,'tutortimetable'])->name('Tutor.tutorial.timetable');
 Route::get('/dashboard/tutor/tutorials/timetable/{id}/getlist',[TutorController::class,'courserequest'])->name('Tutor.tutorial.getlist');
 
+Route::get('/tutor/dashboard',[TutorController::class,'tutordashboard'])->name('tutordashboard');
+Route::get('/student/dashboard',[StudentController::class,'studentdashboard'])->name('studentdashboard');
+
 Route::post('/commenttutor-send',[TutorController::class,'sendcomment'])->name('autosendtutor');
 Route::post('/commentstudent-send',[StudentController::class,'studentsendcomment'])->name('autosendstudent');
 
