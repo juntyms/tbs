@@ -48,12 +48,20 @@ class TutorController extends Controller
 
             $Tutorcom=Tutor_comment::whereExists(function($query){
                 $query->select(DB::raw(1))->from('tutorial_requests')->where('tutorial_requests.tutor_id',$this->tutorid->id)
+                                                                     ->where('tutorial_requests.active',1)
+                                                                     ->where(function($query){
+                                                                        $query->where('tutorial_requests.accepted',0)
+                                                                              ->orWhere('tutorial_requests.accepted',1);})
                                                                     ->whereColumn('tutorial_requests.id','tutor_comments.tutorial_request_id');
 
             })->orderBy('created_at', 'ASC')->get();
 
             $studentcom=Student_comment::whereExists(function($query){
                 $query->select(DB::raw(1))->from('tutorial_requests')->where('tutorial_requests.tutor_id',$this->tutorid->id)
+                                                                     ->where('tutorial_requests.active',1)
+                                                                     ->where(function($query){
+                                                                        $query->where('tutorial_requests.accepted',0)
+                                                                              ->orWhere('tutorial_requests.accepted',1);})
                                                                     ->whereColumn('tutorial_requests.id','student_comments.tutorial_request_id');
 
             })->orderBy('created_at', 'ASC')->get();
@@ -140,12 +148,20 @@ class TutorController extends Controller
 
             $Tutorcom=Tutor_comment::whereExists(function($query){
                 $query->select(DB::raw(1))->from('tutorial_requests')->where('tutorial_requests.tutor_id',$this->tutorid->id)
+                                                                     ->where('tutorial_requests.active',1)
+                                                                     ->where(function($query){
+                                                                        $query->where('tutorial_requests.accepted',0)
+                                                                              ->orWhere('tutorial_requests.accepted',1);})
                                                                     ->whereColumn('tutorial_requests.id','tutor_comments.tutorial_request_id');
 
             })->orderBy('created_at', 'ASC')->get();
 
             $studentcom=Student_comment::whereExists(function($query){
                 $query->select(DB::raw(1))->from('tutorial_requests')->where('tutorial_requests.tutor_id',$this->tutorid->id)
+                                                                     ->where('tutorial_requests.active',1)
+                                                                     ->where(function($query){
+                                                                        $query->where('tutorial_requests.accepted',0)
+                                                                              ->orWhere('tutorial_requests.accepted',1);})
                                                                     ->whereColumn('tutorial_requests.id','student_comments.tutorial_request_id');
 
             })->orderBy('created_at', 'ASC')->get();
@@ -185,7 +201,7 @@ class TutorController extends Controller
         }
         
 
-        return redirect()->route('Tutor.tutorial.list');
+        return redirect()->back();
 
     }
 
@@ -199,6 +215,74 @@ class TutorController extends Controller
             $tutcomment =Tutor_comment::create(['tutorial_request_id'=>$re_id,'description'=>$comment]);
         }
         return response()->json(['success'=>'Successfully']);
+    }
+
+
+    public function  tutordashboard()
+    {
+        $listTutorial=[];
+        $Tutorcom=[];
+        $studentcom=[];
+
+       
+       
+        $this->tutorid=Tutor::firstwhere('user_id',Auth::User()->id);
+        $this->Aay_id=Ay::firstwhere('is_active', 1);
+        
+
+        if($this->tutorid && $this->Aay_id)
+        {
+
+            $listTutorial=Tutorial_request::where('tutor_id', $this->tutorid->id)
+                                    ->where('active',1)
+                                    ->whereExists(function($query){
+                                        $query->where('accepted',0)
+                                            ->orWhere('accepted',1);
+                                    })
+                                    ->whereExists(function($query){
+                    $query->select(DB::raw(1))->from('available_courses')->where('available_courses.tutor_id',$this->tutorid->id)
+                                                                        ->where('available_courses.ay_id', $this->Aay_id->id)
+                                                                        ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');
+            })->get();
+
+            $Tutorcom=Tutor_comment::whereExists(function($query){
+                $query->select(DB::raw(1))->from('tutorial_requests')->where('tutorial_requests.tutor_id',$this->tutorid->id)
+                                                                     ->where('tutorial_requests.active',1)
+                                                                     ->where(function($query){
+                                                                        $query->where('tutorial_requests.accepted',0)
+                                                                              ->orWhere('tutorial_requests.accepted',1);})
+                                                                    ->whereColumn('tutorial_requests.id','tutor_comments.tutorial_request_id');
+
+            })->orderBy('created_at', 'ASC')->get();
+
+            $studentcom=Student_comment::whereExists(function($query){
+                $query->select(DB::raw(1))->from('tutorial_requests')->where('tutorial_requests.tutor_id',$this->tutorid->id)
+                                                                     ->where('tutorial_requests.active',1)
+                                                                     ->where(function($query){
+                                                                        $query->where('tutorial_requests.accepted',0)
+                                                                              ->orWhere('tutorial_requests.accepted',1);})
+                                                                    ->whereColumn('tutorial_requests.id','student_comments.tutorial_request_id');
+
+            })->orderBy('created_at', 'ASC')->get();
+
+            $AlllistTutorial=Tutorial_request::where('tutor_id', $this->tutorid->id)
+                                    ->where('active',1)
+                                    ->whereExists(function($query){
+                    $query->select(DB::raw(1))->from('available_courses')->where('available_courses.ay_id', $this->Aay_id->id)
+                                                                        ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');
+            })->orderBy('created_at','desc')->get();
+
+           
+        }
+
+
+
+        return view('Tutors.tutordashboard')->with('lists',$listTutorial)
+                                            ->with('Alllists',$AlllistTutorial)
+                                            ->with('tutcomments',$Tutorcom)
+                                            ->with('studentcomments',$studentcom);
+
+
     }
 
 }

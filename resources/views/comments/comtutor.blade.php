@@ -13,30 +13,46 @@
                         @php ($y=0)
                         @php($countt=0)
                         @php($counts=0)
+                        @php($countxy=0)
+                        @php($indexS=array())
+                        @php($scon=null)
+                        @php($tcon=null)
+                       
+               
                         @foreach($studentcomments as $scon)
                             @if($scon->tutorial_request_id == $list->id)
                                 @php($x=$x+1)
                             @endif
                         @endforeach
+                       
                         @foreach($tutcomments as $tcon)
                             @if($tcon->tutorial_request_id == $list->id)
                                 @php($y=$y+1)
                             @endif
                         @endforeach
+
+                       
                         @foreach($studentcomments as $scon)
-                            @foreach($tutcomments as $tcon)
-                                @if($tcon->tutorial_request_id == $list->id)
-                                    @if($tcon->created_at < $scon->created_at)
-                                        <li class="sent">
-                                            <img src="{{ URL::asset('/storage/images/'.Auth::user()->photo)}}" alt="" />
-                                            <p>{{$tcon->description}}</p>
-                                            <span class="time_date">{{$tcon->created_at}}</span>
-                                            @php($countt=$countt+1)
-                                        </li>
-                
+                            @for($i=0; $i < sizeof($tutcomments);$i++)
+
+                                @if($tutcomments[$i]->tutorial_request_id == $list->id)
+                            
+                                    @if($tutcomments[$i]->created_at < $scon->created_at)
+                                   
+                                        @if(!(in_array($i, $indexS)))
+
+                                            <li class="sent">
+                                                <img src="{{ URL::asset('/storage/images/'.Auth::user()->photo)}}" alt="" />
+                                                <p>{{$tutcomments[$i]->description}}</p>
+                                                <span class="time_date">{{$tutcomments[$i]->created_at}}</span>
+                                                @php($countt=$countt+1)
+                                                @php(array_push($indexS, $i))
+                                            </li>
+                    
+                                        @endif
                                     @endif
                                 @endif
-                            @endforeach
+                            @endfor
                             @if($scon->tutorial_request_id == $list->id)
                                 <li class="replies">
                                     <img src="{{ URL::asset('/storage/images/'.$list->student->photo)}}" alt="" />
@@ -45,30 +61,22 @@
                                     @php($counts=$counts+1)
                                 </li>
                             @endif
+                          
                                 
                         @endforeach
-                        @if($counts<$x)
-                            @for($i=$counts;$i<$x;$i++)
-                                @if($studentcomments[$i]->tutorial_request_id == $list->id)
-                                    <li class="replies">
-                                        <img src="{{ URL::asset('/storage/images/'.$list->student->photo)}}" alt="" />
-                                        <p>{{$studentcomments[$i]->description}}</p>
-                                        <span class="time_date"> {{$studentcomments[$i]->created_at}}</span>
                         
-                                    </li>
-                                @endif
-                            @endfor
-
-                        @endif
-                        @if($countt<$y)
-                            @for($i=$countt;$i<$y;$i++)
+                        @if(sizeof($tutcomments) >= sizeof($studentcomments))
+                            @for($i=$countt-1; $i < sizeof($tutcomments) ; $i++)
+                           
                                 @if($tutcomments[$i]->tutorial_request_id == $list->id)
-                                <li class="sent">
-                                        <img src="{{ URL::asset('/storage/images/'.Auth::user()->photo)}}" alt="" />
-                                        <p>{{$tutcomments[$i]->description}}</p>
-                                        <span class="time_date"> {{$tutcomments[$i]->created_at}}</span>
-                                        
-                                </li>
+                                    @if(!(in_array($i, $indexS)))
+                                        <li class="sent">
+                                                <img src="{{ URL::asset('/storage/images/'.Auth::user()->photo)}}" alt="" />
+                                                <p>{{$tutcomments[$i]->description}}</p>
+                                                <span class="time_date"> {{$tutcomments[$i]->created_at}}</span>
+                                                
+                                        </li>
+                                    @endif
                                 @endif
                             @endfor
                         @endif
