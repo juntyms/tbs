@@ -168,6 +168,17 @@ Booking Select Department
         </div>
     </a>
     @endcan
+    @can('TBS-managment')
+    <a class="col-md-6 col-xl-3" href="{{route('Report.Departments')}}">
+        <div class="card bg-c-blue order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">View Report</h6>
+                <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span></span></h4>
+                <p class="m-b-0"><span class="f-right"></span></p>
+            </div>
+        </div>
+    </a>
+    @endcan
 
 </div>
 

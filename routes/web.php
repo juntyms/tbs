@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\SuperController;
 use App\Http\Controllers\TutorController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AdminCourseController;
@@ -104,4 +105,10 @@ Route::get('/dashboard/booking/department/{depid}/listAvCourse',[StudentControll
 Route::get('/dashboard/booking/department/{depid}/AvCourse/{course}/tutors',[StudentController::class, 'booking_department_availablecourses_tutor'])->name('AvlisTu');
 
 Route::get('/dashboard/booking/department/{depid}/selectoption',[StudentController::class, 'selectoption'])->name('booking.option');
+
+
+#----------------------------------------- Reports --------------------------------------------------------------------------------------------
+Route::get('/dashboard/report',[ReportController::class,'reporting_department'])->name('Report.Departments');
+
+
 });

@@ -8,5 +8,8 @@
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="{{asset('assets/js/select2.min.js')}}"></script>
 <script src="{{asset('assets/js/ckeditor.js')}}"></script>
+<script src="{{asset('assets/vendor/chart.js/chart.min.js')}}"></script>
+<script src="{{asset('assets/vendor/echarts/echarts.min.js')}}"></script>
+<script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
 
 
