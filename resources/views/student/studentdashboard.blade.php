@@ -13,7 +13,7 @@ current Tutorials
   <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('PageTitle')
-    <h3>Current Tutorials</h3>
+    <h3>Student Dashboard</h3>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>

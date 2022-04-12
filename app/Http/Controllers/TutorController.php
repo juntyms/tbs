@@ -223,6 +223,7 @@ class TutorController extends Controller
         $listTutorial=[];
         $Tutorcom=[];
         $studentcom=[];
+        $AlllistTutorial=[];
 
        
        
