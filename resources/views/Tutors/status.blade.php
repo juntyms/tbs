@@ -32,7 +32,7 @@
                                     <div class="d-flex flex-column"> <span class="heading d-block">Department</span> <span class="subheadings">{{$list->AvaliableCourse->course->departmentname->name}}</span> </div>
                                 </td>
                                 <td>
-                                    <div class="d-flex flex-column"> <span class="heading d-block">Location</span> <span class="subheadings">{{$list->location}}</span> </div>
+                                    <div class="d-flex flex-column"> <span class="heading d-block">Location</span> <span class="subheadings">{{$list->AvaliableCourse->location}}</span> </div>
                                 </td>
                                 <td> </td>
                             </tr>

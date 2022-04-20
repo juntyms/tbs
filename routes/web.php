@@ -108,7 +108,10 @@ Route::get('/dashboard/booking/department/{depid}/selectoption',[StudentControll
 
 
 #----------------------------------------- Reports --------------------------------------------------------------------------------------------
-Route::get('/dashboard/report',[ReportController::class,'reporting_department'])->name('Report.Departments');
+Route::get('/dashboard/report',[ReportController::class,'reporting_department'])->name('Report.allDepartments');
+Route::get('/dashboard/departmentReport',[AdminCourseController::class,'departmentReport'])->name('Report.Department');
+Route::get('/dashboard/report/{depid}/Department',[ReportController::class,'eachDepartmentReport'])->name('Report.eachDepartmentReport');
+
 
 
 });

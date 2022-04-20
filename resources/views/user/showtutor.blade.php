@@ -57,7 +57,9 @@ Department tutors
                                 <tr>
                                     <td>{{ $Dep_tutor->gettutorname->fullname }} </td>
                                     <td>{{ $Dep_tutor->gettutorname->department->name }} </td>
+                                    
                                     @if($Dep_tutor->is_staff==1)
+                                   
                                         <td>Staff </td>
                                     @else
                                         <td>Student</td>

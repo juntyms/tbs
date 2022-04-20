@@ -34,9 +34,6 @@ class HomeController extends Controller
         $DepAdminUser=False;
         $TutorUser=False;
         $StudentUser=False;
-        $currentdatetime=new DateTime();
-        $currentdate=$currentdatetime->format('Y-m-d');
-        $currenthour=$currentdatetime->format('H');
        
 
 
@@ -81,127 +78,21 @@ class HomeController extends Controller
 
         }elseif($TutorUser && $StudentUser)
         {
-            $listTutorial=Tutorial_request::where('user_id',Auth::User()->id)
-                                        ->where('active',1)
-                                        ->whereExists(function($query){
-                                                $query->where('accepted',0)
-                                                    ->orWhere('accepted',1);})->get();
            
-            if($listTutorial)
-            {
-                foreach($listTutorial as $list)
-                {
-                    if($list->date<$currentdate)
-                    {
-                        
-                        $list->update(['accepted'=>4]);
-                    }elseif($list->date==$currentdate)
-                    {
-                        
-                        if($list->AvaliableCourse->time<$currenthour)
-                        {
-                            
-                            $list->update(['accepted'=>4]);
-
-                        }
-                    }
-                }
-            }
-                                        
-
-            $tutorid=Tutor::firstwhere('user_id',Auth::User()->id);
-
-            if($tutorid)
-            {
-            $tutorlistTutorial=Tutorial_request::where('tutor_id',$tutorid->id)
-                                                ->where('active',1)
-                                                ->whereExists(function($query){
-                                                        $query->where('accepted',0)
-                                                            ->orWhere('accepted',1);})->get();
-                if($tutorlistTutorial)
-                {
-                    foreach($tutorlistTutorial as $list)
-                    {
-                        if($list->date<$currentdate)
-                        {
-                           
-                            $list->update(['accepted'=>4]);
-                        }elseif($list->date==$currentdate)
-                        {
-                            
-                            if($list->AvaliableCourse->time<$currenthour)
-                            {
-                                
-                                $list->update(['accepted'=>4]);
-
-                            }
-                        }
-                    }
-                }
-            }
 
 
             
             return redirect()->route('tutordashboard');
         }elseif($StudentUser)
         {
-            $listTutorial=Tutorial_request::where('user_id',Auth::User()->id)
-                                        ->where('active',1)
-                                        ->whereExists(function($query){
-                                                $query->where('accepted',0)
-                                                    ->orWhere('accepted',1);})->get();
-            
-            if($listTutorial)
-            {
-                foreach($listTutorial as $list)
-                {
-                    if($list->date<$currentdate)
-                    {
-                        $list->update(['accepted'=>4]);
-                    }elseif($list->date==$currentdate)
-                    {
-                        if($list->time<$currenthour)
-                        {
-                            $list->update(['accepted'=>4]);
-
-                        }
-                    }
-                }
-            }
-
+           
 
             
             return redirect()->route('studentdashboard');
 
         }elseif($TutorUser)
         {
-            $tutorid=Tutor::firstwhere('user_id',Auth::User()->id);
-
-            if($tutorid)
-            {
-            $tutorlistTutorial=Tutorial_request::where('tutor_id',$tutorid->id)
-                                                ->where('active',1)
-                                                ->whereExists(function($query){
-                                                        $query->where('accepted',0)
-                                                            ->orWhere('accepted',1);})->get();
-                if($tutorlistTutorial)
-                {
-                    foreach($tutorlistTutorial as $list)
-                    {
-                        if($list->date<$currentdate)
-                        {
-                            $list->update(['accepted'=>4]);
-                        }elseif($list->date==$currentdate)
-                        {
-                            if($list->AvaliableCourse->time<$currenthour)
-                            {
-                                $list->update(['accepted'=>4]);
-
-                            }
-                        }
-                    }
-                }
-            }
+            
             return redirect()->route('tutordashboard');
 
         }else{

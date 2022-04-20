@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use DateTime;
+use App\Models\Tutorial_request;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +17,40 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function(){
+
+            $currentdatetime=new DateTime();
+            $currentdate=$currentdatetime->format('Y-m-d');
+            $currenthour=$currentdatetime->format('H');
+
+            $listTutorial=Tutorial_request::where('active',1)
+            ->whereExists(function($query){
+                    $query->where('accepted',0)
+                        ->orWhere('accepted',1);})->get();
+
+            
+
+            if($listTutorial)
+            {
+                foreach($listTutorial as $list)
+                {
+                    if($list->date<$currentdate)
+                    {
+
+                        $list->update(['accepted'=>4]);
+                    }elseif($list->date==$currentdate)
+                    {
+
+                        if($list->AvaliableCourse->time<$currenthour)
+                        {
+                            $list->update(['accepted'=>4]);
+
+                        }
+                    }
+                }
+            }
+
+        })->dailyAt('23:30');
     }
 
     /**

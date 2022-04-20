@@ -30,13 +30,14 @@
                                 @php($y=$y+1)
                             @endif
                         @endforeach
+                       
 
                        
                         @foreach($studentcomments as $scon)
                             @for($i=0; $i < sizeof($tutcomments);$i++)
-
-                                @if($tutcomments[$i]->tutorial_request_id == $list->id)
                             
+                                @if($tutcomments[$i]->tutorial_request_id == $list->id)
+                                   
                                     @if($tutcomments[$i]->created_at < $scon->created_at)
                                    
                                         @if(!(in_array($i, $indexS)))
@@ -57,7 +58,8 @@
                                 <li class="replies">
                                     <img src="{{ URL::asset('/storage/images/'.$list->student->photo)}}" alt="" />
                                     <p>{{$scon->description}}</p>
-                                    <span class="time_date"> {{$scon->created_at}}</span>
+                                    <div class="text-right">
+                                    <span class="time_date"> {{$scon->created_at}}</span></div>
                                     @php($counts=$counts+1)
                                 </li>
                             @endif
@@ -65,8 +67,8 @@
                                 
                         @endforeach
                         
-                        @if(sizeof($tutcomments) >= sizeof($studentcomments))
-                            @for($i=$countt-1; $i < sizeof($tutcomments) ; $i++)
+                        @if(sizeof($tutcomments) > $countt)
+                            @for($i=$countt; $i < sizeof($tutcomments) ; $i++)
                            
                                 @if($tutcomments[$i]->tutorial_request_id == $list->id)
                                     @if(!(in_array($i, $indexS)))
