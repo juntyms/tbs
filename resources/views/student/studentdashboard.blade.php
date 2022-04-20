@@ -52,8 +52,7 @@ current Tutorials
                                     <tr class="bg-warning text-white">
                                         <th class="text-center">Tutorial ID</th>
                                         <th class="text-center"> Course</th>
-                                        <th class="text-center">Tutor Name</th>
-                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Tutor Name</th
                                         <th class="text-center">Day/Time</th>
                                         <th class="text-center">Location</th>
                                         <th class="text-center">Link</th>

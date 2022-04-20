@@ -37,6 +37,7 @@ All requests
                                                 <th class="text-center">Course</th>
                                                 <th class="text-center">Student</th>
                                                 <th class="text-center">Day/Time</th>
+                                                <th class="text-center">Date</th>
                                                 <th class="text-center">Location</th>
                                                 <th class="text-center">Link</th>
                                                 <th class="text-center">Status</th>
@@ -51,6 +52,7 @@ All requests
                                                     <td>{{$list->AvaliableCourse->course->name}}</td>
                                                     <td>{{$list->student->fullname}} </td>
                                                     <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
+                                                    <td>{{$list->date}}</td>
                                                     <td>{{$list->AvaliableCourse->location}}</td>
                                                     @if($list->AvaliableCourse->link)
                                                     <td><a href="{{$list->AvaliableCourse->link}}" target="_blank">click here</a></td>
@@ -74,7 +76,7 @@ All requests
                                                     <td>Rejected</td>
                                                     @elseif($list->accepted==3)
                                                     <td>completed</td>
-                                                    @elseif($list->accepted==4)Rejected
+                                                    @elseif($list->accepted==4)
                                                     <td>incompleted</td>
                                                     @endif
                                                     <td>
@@ -114,6 +116,7 @@ All requests
                                             <th class="text-center">Course</th>
                                             <th class="text-center">Student Name</th>
                                             <th class="text-center">Day/Time</th>
+                                            <th class="text-center">Date</th>
                                             <th class="text-center">Location</th>
                                             <th class="text-center">Status</th>
                                         
@@ -126,6 +129,7 @@ All requests
                                                     <td>{{$list->AvaliableCourse->course->name}}</td>
                                                     <td>{{$list->student->fullname}} </td>
                                                     <td>{{$list->AvaliableCourse->day}}-{{$list->AvaliableCourse->time}}:00</td>
+                                                    <td>{{$list->date}}</td>
                                                     <td>{{$list->AvaliableCourse->location}}</td>
                                                     @if($list->accepted==0)
                                                     <td>Waiting Approval</td>

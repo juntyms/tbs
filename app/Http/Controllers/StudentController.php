@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Tutor;
 use App\Models\Course;
 use App\Models\Department;
+use App\Mail\RequestConfirm;
 use Illuminate\Http\Request;
 use App\Models\Tutor_comment;
 use App\Models\Student_comment;
@@ -15,6 +16,7 @@ use App\Models\Available_course;
 use App\Models\Tutorial_request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -453,8 +455,10 @@ class StudentController extends Controller
         }
 
         
+        
        
         $studentcomment=Tutorial_request::create(['available_course_id'=>$avaliable_course,'user_id'=>Auth::User()->id,'tutor_id'=>$tutorid,'date'=>$sotrddate]);
+        Mail::to($studentcomment->AvaliableCourse->tutor->gettutorname->email)->send(new RequestConfirm($studentcomment));
         if($request->has('comment'))
         {
             Student_comment::create(['tutorial_request_id'=>$studentcomment->id,'description'=>$request->comment]);

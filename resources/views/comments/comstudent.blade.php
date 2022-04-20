@@ -41,7 +41,8 @@
                                             <li class="replies">
                                                 <img src="{{ URL::asset('/storage/images/'.$list->AvaliableCourse->tutor->gettutorname->photo)}}" alt="" />
                                                 <p>{{$tutcomments[$i]->description}}</p>
-                                                <span class="time_date">{{$tutcomments[$i]->created_at}}</span>
+                                                <div class="text-right">
+                                                <span class="time_date">{{$tutcomments[$i]->created_at}}</span></div>
                                                 @php($countt=$countt+1)
                                                 @php(array_push($indexS, $i))
                                             </li>
@@ -62,15 +63,16 @@
                         @endforeach
                     
                        
-                        @if(sizeof($tutcomments) >= sizeof($studentcomments))
-                            @for($i=$countt-1; $i < sizeof($tutcomments) ; $i++)
+                        @if(sizeof($tutcomments) > $countt)
+                            @for($i=$countt; $i < sizeof($tutcomments) ; $i++)
                            
                                 @if($tutcomments[$i]->tutorial_request_id == $list->id)
                                     @if(!(in_array($i, $indexS)))
                                         <li class="replies">
                                                 <img src="{{ URL::asset('/storage/images/'.$list->AvaliableCourse->tutor->gettutorname->photo)}}" alt="" />
                                                 <p>{{$tutcomments[$i]->description}}</p>
-                                                <span class="time_date"> {{$tutcomments[$i]->created_at}}</span>
+                                                <div class="text-right">
+                                                <span class="time_date"> {{$tutcomments[$i]->created_at}}</span></div>
                                                 
                                     
                                         </li>
