@@ -23,8 +23,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 class StudentController extends Controller
 {
     //**************************************************************/
-    private $user_id=[];
-    private $ay_id=[];
+    private $user_id;
+    private $ay_id;
 
     public function booking_department()
     {
@@ -95,8 +95,9 @@ class StudentController extends Controller
     public function AutoselectingCourse(Request $request,$depid)
     {
     	$courses = [];
+        $this->ay_id=firstwhere('is_active', 1);;
 
-        if($request->has('q')){
+        if($request->has('q') && $this->ay_id){
             $search = $request->q;
             $courses =Course::select("id", "name")
             		->where('name', 'LIKE', "%$search%")
@@ -105,6 +106,7 @@ class StudentController extends Controller
                         $query->select(DB::raw(1))
                               ->from('available_courses')
                               ->where('available_courses.active',1)
+                              ->where('avaliable_courses.ay_id',$this->ay_id->id)
                               ->whereColumn('available_courses.course_id', 'courses.id');
                     })->get();
         }

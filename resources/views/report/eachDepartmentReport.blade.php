@@ -241,15 +241,19 @@
                       
                      
                       <tr>
-                        @if($ay)
-                        <td>{{$dep->name}}</td>
-                        <td>{{$dep->Available()->where('available_courses.active',1)->count()}}</td>
-                        <td>{{$dep->RequestDep()->count()}}</td>
-                        <td>{{$dep->requestDep()->where('tutorial_requests.accepted',0)->count()}}</td>
-                        <td>{{$dep->requestDep()->where('tutorial_requests.accepted',1)->count()}}</td>
-                        <td>{{$dep->requestDep()->where('tutorial_requests.accepted',3)->count()}}</td>
-                        <td>{{$dep->requestDep()->where('tutorial_requests.accepted',4)->count()}}</td>
-                        <td>{{$dep->requestDep()->where('tutorial_requests.accepted',2)->count()}}</td>
+                        
+                      @if($ay)
+                          @if($dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count() > 0)
+                        
+                            <td>{{$dep->name}}</td>
+                            <td>{{$dep->Available()->where('available_courses.active',1,'available_courses.ay_id',$ay)->count()}}</td>
+                            <td>{{$dep->RequestDep()->count()}}</td>
+                            <td>{{$dep->requestDep()->where('tutorial_requests.accepted',0)->count()}}</td>
+                            <td>{{$dep->requestDep()->where('tutorial_requests.accepted',1)->count()}}</td>
+                            <td>{{$dep->requestDep()->where('tutorial_requests.accepted',3)->count()}}</td>
+                            <td>{{$dep->requestDep()->where('tutorial_requests.accepted',4)->count()}}</td>
+                            <td>{{$dep->requestDep()->where('tutorial_requests.accepted',2)->count()}}</td>
+                          @endif
                         @else
                         <td>{{$dep->name}}</td>
                         <td>-</td>

@@ -475,7 +475,7 @@ class AdminCourseController extends Controller
            
         }
 
-        if($this->depReported && $this->Aay_id)
+        if($this->depReported)
         {
             $sctuser=User::where('department_id',$this->depReported->id)->get();
 
@@ -492,7 +492,9 @@ class AdminCourseController extends Controller
                     $totalTutor+=1;
 
                 }
-            }
+            } 
+        }
+        if($this->depReported && $this->Aay_id){
 
             $listTutorial=Tutorial_request::where('active',1)
                                     ->whereExists(function($query){

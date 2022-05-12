@@ -50,7 +50,7 @@ class Kernel extends ConsoleKernel
                 }
             }
 
-        })->dailyAt('23:30');
+        })->dailyAt(env('TIMESCH','23:30'));
     }
 
     /**
