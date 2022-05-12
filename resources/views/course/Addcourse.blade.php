@@ -1,6 +1,6 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
-        <div class="modal-header bg-primary text-white">
+        <div class="modal-header bg-primary text-white">`
             <h5 class="modal-title">Add New Course</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    private $ay_id=[];
-    private $months=[];
-    private $countR=[];
+    private $ay_id;
+    private $months;
+    private $countR;
     public function reporting_department()
     {
         $totalstudent=0;
@@ -26,8 +26,12 @@ class ReportController extends Controller
         $currentdate=$currentdatetime->format('Y-m-d');
         $currenthour=$currentdatetime->format('H');
         $currentmonth=$currentdatetime->format('m');
+        $reall=[];
+        $this->months=[];
+        $this->countR=[];
 
         $currentMonthIndex=0;
+        $currentAVcourses=[];
 
         $acadmicMonth=[9,10,11,12,1,2,3,4,5,6,7];
 
@@ -57,24 +61,23 @@ class ReportController extends Controller
         }
 
 
-        
-        $reall = Tutorial_request::select(DB::raw('count(date) as count'), DB::raw('MONTH(date) as month'))
-                                ->whereExists(function($query){         
-                                    $query->select(DB::raw(1))->from('available_courses')->where('available_courses.ay_id', $this->ay_id->id)
-                                        ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');
-                                    })
-                                ->groupBy('month')->orderBy('date', 'asc')->get();
-        
+        if($this->ay_id){
+            $reall = Tutorial_request::select(DB::raw('count(date) as count'), DB::raw('MONTH(date) as month'))
+                                    ->whereExists(function($query){         
+                                        $query->select(DB::raw(1))->from('available_courses')->where('available_courses.ay_id', $this->ay_id->id)
+                                            ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');
+                                        })
+                                    ->groupBy('month')->orderBy('date', 'asc')->get();
+            
 
 
-        $currentAVcourses = Tutorial_request::whereExists(function($query){         
-                                    $query->select(DB::raw(1))->from('available_courses')->where('available_courses.ay_id', $this->ay_id->id)
-                                                                                         ->where('available_courses.active',1)
-                                        ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');
-                                    })
-                                ->get();
-
-
+            $currentAVcourses = Tutorial_request::whereExists(function($query){         
+                                        $query->select(DB::raw(1))->from('available_courses')->where('available_courses.ay_id', $this->ay_id->id)
+                                                                                            ->where('available_courses.active',1)
+                                            ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');
+                                        })
+                                    ->get();
+        }
 
         for($i=0; $i <= $currentMonthIndex ; $i++)
         {
@@ -121,7 +124,8 @@ class ReportController extends Controller
                                    ->with('totalS',$totalstudent)
                                    ->with('CurrentCourse',$currentAVcourses)
                                    ->with('months',json_encode ($this->months))
-                                   ->with('countR',json_encode($this->countR));
+                                   ->with('countR',json_encode($this->countR))
+                                   ->with('ay', $this->ay_id);
     }
 
 
@@ -163,7 +167,7 @@ class ReportController extends Controller
 
        
 
-        if($this->depReported && $this->Aay_id)
+        if($this->depReported)
         {
             $sctuser=User::where('department_id',$this->depReported->id)->get();
 
@@ -181,6 +185,9 @@ class ReportController extends Controller
 
                 }
             }
+        }
+        if($this->depReported && $this->Aay_id)
+        {
 
             $listTutorial=Tutorial_request::where('active',1)
                                     ->whereExists(function($query){
