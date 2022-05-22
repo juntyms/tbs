@@ -36,6 +36,7 @@ Acadmic Year
                     <tr>
                         <th>ID</th>
                         <th>Acadmic Year</th>
+                        <th>Semester</th>
                         <th>Status</th>
                         <th>Created At</th>
                         <th>Action</th>
@@ -46,6 +47,7 @@ Acadmic Year
                                 <tr>
                                     <td>{{$AD_year->id }}</td>
                                     <td>{{$AD_year->name }}</td>
+                                    <td>{{$AD_year->semester}}</td>
                                     @if($AD_year->is_active==1)
                                         <td>Activated</td>
                                     @else

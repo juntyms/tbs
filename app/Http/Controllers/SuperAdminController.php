@@ -20,13 +20,14 @@ class SuperAdminController extends Controller
         $this->validate($request, [
             'yearname' => 'required',
             'status' => 'required',
+            'semester'=>'required',
         ]);
 
         if($request->status==1)
         {  
             
             $affected = DB::table('ays')->where('is_active', '=', 1)->update(array('is_active' => 0));
-            Ay::create(['name'=>$request->yearname,'is_active'=>1 ]);    
+            Ay::create(['name'=>$request->yearname,'semester'=> $request->semester,'is_active'=>1 ]);    
 
         }else{ 
             Ay::create(['name'=>$request->yearname,'is_active'=>0]);
@@ -45,6 +46,7 @@ class SuperAdminController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'status' => 'required',
+            'semester' => 'required',
         ]);
         $year = Ay::findOrFail($request->id);
 
@@ -52,10 +54,10 @@ class SuperAdminController extends Controller
         {
             $affected = DB::table('ays')->where('is_active', '=', 1)->update(array('is_active' => 0));
            
-            $year->update(['name'=>$request->name,'is_active'=>1 ]);    
+            $year->update(['name'=>$request->name, 'semester'=> $request->semester, 'is_active'=>1 ]);    
 
         }else{ 
-            $year->update(['name'=>$request->name,'is_active'=>0 ]);
+            $year->update(['name'=>$request->name, 'semester'=> $request->semester ,'is_active'=>0 ]);
 
         }
         return redirect()->route('AcadmicY.index');

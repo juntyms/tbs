@@ -15,6 +15,10 @@
                             {{ Form::text('yearname',null,['class' => 'form-control','placeholder' => 'Academic Year',]) }}
                             {{ Form::label('Academic Year') }}
                         </div>
+                        <div class="form-floating mb-3">
+                            {{ Form::text('semester',null,['class' => 'form-control','placeholder' => 'semester',]) }}
+                            {{ Form::label('Semester') }}
+                        </div>
                         
                         <div class="form-group col col-lg-6">
                             <label for="rtypes" class="">Activate:</label>                                          
