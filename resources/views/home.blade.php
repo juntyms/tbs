@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title')
-Booking Select Department
+Dashboard
 @endsection
 @section('PageTitle')
 <h3>Dashboard </h3>

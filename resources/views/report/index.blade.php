@@ -86,7 +86,7 @@ Departments Report statistics
 
                              
                                   {
-                                      value: {{$dep->Available()->where('available_courses.active',1)->count()}},
+                                      value: {{$dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count()}},
                                       name: '{{$dep->name}}'
                                   },
                             

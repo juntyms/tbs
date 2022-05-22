@@ -29,8 +29,9 @@ class StudentController extends Controller
     public function booking_department()
     {
         $deps=Department::get();
-
-        return view('student.booking.index')->with('deps',$deps);
+        $this->ay_id=Ay::firstwhere('is_active', 1);
+        return view('student.booking.index')->with('deps',$deps)
+                                            ->with('ay', $this->ay_id);
     }
     //***************************Booking***********************************/
 
@@ -95,7 +96,7 @@ class StudentController extends Controller
     public function AutoselectingCourse(Request $request,$depid)
     {
     	$courses = [];
-        $this->ay_id=firstwhere('is_active', 1);;
+        $this->ay_id=Ay::firstwhere('is_active', 1);
 
         if($request->has('q') && $this->ay_id){
             $search = $request->q;
@@ -573,6 +574,7 @@ class StudentController extends Controller
         $vshow2="";
         $vshow3="";
         $depid=Department::firstwhere('id',$id);
+        $this->ay_id=Ay::firstwhere('is_active', 1);
 
         $Serchtutor = [];
         $courses = [];       
@@ -596,6 +598,7 @@ class StudentController extends Controller
                                 $query->select(DB::raw(1))
                                 ->from('available_courses')
                                 ->where('available_courses.active',1)
+                                ->where('available_courses.ay_id',$this->ay_id->id)
                                 ->whereColumn('available_courses.course_id', 'courses.id'); })->distinct()
                                 ->get();
 

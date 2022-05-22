@@ -23,7 +23,7 @@ Booking Select Department
             <div class="card-block">
                 <h6 class="m-b-20"><strong>{{$dep->name}} </strong></h6>
                 <h4 class="text-right"><i class="bi bi-journal-text f-left"></i><span>Tutorials</span></h4>
-                <p class="m-b-0"><span class="f-right">{{$dep->Available()->where('available_courses.active',1)->count()}}</span></p>
+                <p class="m-b-0"><span class="f-right">{{$dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count()}}</span></p>
             </div>
           </div>
         </a>

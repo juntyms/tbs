@@ -62,7 +62,7 @@
                           
                             {
                                 
-                            value: {{$dep->Available()->where('available_courses.active',1)->count()}},
+                            value: {{$dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count()}},
                                 
                             name: 'Tutorials'
                             },
@@ -241,12 +241,12 @@
                       
                      
                       <tr>
-                        
+                       
                       @if($ay)
                           @if($dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count() > 0)
                         
                             <td>{{$dep->name}}</td>
-                            <td>{{$dep->Available()->where('available_courses.active',1,'available_courses.ay_id',$ay)->count()}}</td>
+                            <td>{{$dep->Available()->where('available_courses.active',1,)->where('available_courses.ay_id',$ay->id)->count()}}</td>
                             <td>{{$dep->RequestDep()->count()}}</td>
                             <td>{{$dep->requestDep()->where('tutorial_requests.accepted',0)->count()}}</td>
                             <td>{{$dep->requestDep()->where('tutorial_requests.accepted',1)->count()}}</td>
