@@ -1,5 +1,6 @@
 <!-- Title -->
 <title>@yield("title")</title>
+@yield('customcss')
 
 <!-- Favicons -->
 <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
@@ -25,7 +26,8 @@
   <script src="{{asset('assets/js/jquery.min.js')}}"></script>
   <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
   
-  @yield('customcss')
+
+ 
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.0

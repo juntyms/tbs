@@ -358,7 +358,7 @@ class AdminCourseController extends Controller
 
         }
         
-        $Dep_Courses=Available_course::get()->where('active',1);;
+        $Dep_Courses=Available_course::get()->where('active',1);
         return view('avaliableCourse.Addcourse')->with('Dep_Courses', $Dep_Courses)
                                                 ->with('tutorid',$tutorid)
                                                 ->with('show_AV_time',$show_AV_time)
@@ -513,6 +513,9 @@ class AdminCourseController extends Controller
                                                            ->orWhere('accepted',3)
                                                            ->orWhere('accepted',4);
                                                 })
+                                                ->whereExists(function($query){
+                                                    $query->select(DB::raw(1))->from('available_courses')->where('available_courses.ay_id', $this->Aay_id->id)
+                                                                                                        ->whereColumn('available_courses.id', 'tutorial_requests.available_course_id');})
                                                ->whereExists(function($query){
                                                     $query->select(DB::raw(1))->from('tutors')->where('tutors.department_id',$this->depReported->id)                
                                                     ->whereColumn('tutors.id', 'tutorial_requests.tutor_id');

@@ -76,7 +76,7 @@
         </div>
         <div class="modal-footer">
         
-            <button type="submit" class="btn btn-success"><i class="fa fa-trash">Confirm</i></button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-trash">Submit</i></button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
     </div>

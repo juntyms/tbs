@@ -99,7 +99,7 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{route('student.tutorial.timetable')}}">
         <i class="bi bi-card-list"></i>
-        <span>Student Timetable</span>
+        <span>Tutorials Timetable</span>
       </a>
     </li><!-- End Register Page Nav -->
     @endcan

@@ -132,7 +132,7 @@ class ReportController extends Controller
 
 
 
-    public function  eachDepartmentReport($depid)
+    public function  eachDepartmentReport($depid) 
     {
         $listTutorial=[];
         $AlllistTutorial=[];
