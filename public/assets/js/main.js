@@ -318,4 +318,6 @@
 
 })();
 
-
+document.getElementById('add-btn').onclick = function () {
+  this.disabled = true;
+}

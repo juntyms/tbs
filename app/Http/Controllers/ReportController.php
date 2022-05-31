@@ -33,7 +33,37 @@ class ReportController extends Controller
         $currentMonthIndex=0;
         $currentAVcourses=[];
 
-        $acadmicMonth=[9,10,11,12,1,2,3,4,5,6,7];
+        $acadmicMonth1=[9,10,11,12,1];
+        $acadmicMonth2=[2,3,4];
+        $acadmicMonth3=[5,6,7];
+
+        if( $this->ay_id)
+        {
+            if($this->ay_id->semester =='lst')
+            {
+                $acadmicMonth= [9,10,11,12,1];
+
+            
+            } elseif($this->ay_id->semester =='2nd')
+            {
+                $acadmicMonth= [2,3,4,5];
+
+            } elseif($this->ay_id->semester =='3d')
+            {
+                $acadmicMonth= [5,6,7];
+              
+
+            }else{
+                $acadmicMonth=[8];
+
+            }
+        }
+        else{
+            $acadmicMonth=[8];
+
+        }
+
+
 
         for($i=0;$i < sizeof($acadmicMonth); $i++)
         {

@@ -184,6 +184,8 @@ class TutorController extends Controller
             if($status==1)
             {
                 Alert::toast('Request approved ','success');
+                Mail::to($updateRequest->student->email)->send(new RequestConfirm($updateRequest));
+
             }
             if($status==2)
             {

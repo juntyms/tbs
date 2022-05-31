@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuperController;
 use App\Http\Controllers\TutorController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AdminCourseController;
@@ -111,6 +112,11 @@ Route::get('/dashboard/booking/department/{depid}/selectoption',[StudentControll
 Route::get('/dashboard/report',[ReportController::class,'reporting_department'])->name('Report.allDepartments');
 Route::get('/dashboard/departmentReport',[AdminCourseController::class,'departmentReport'])->name('Report.Department');
 Route::get('/dashboard/report/{depid}/Department',[ReportController::class,'eachDepartmentReport'])->name('Report.eachDepartmentReport');
+
+#----------------------------------------Search-------------------------------------------------------------------------------------------------
+Route::get('/dashboard/search',[SearchController::class,'searchall'])->name('search');
+
+
 
 
 
