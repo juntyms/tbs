@@ -11,11 +11,11 @@
                             <div class="col-12 text-center">
                                 <div class="row no-gutters">
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        {{ Form::select('selectA',$years,null,['class' => 'form-control', 'id'=>'selectA','wire:model'=>'selectA', 'placeholder' => 'Select Academic Year']) }}
+                                        {{ Form::select('selectA',$years,null,['class' => 'form-select', 'id'=>'selectA','wire:model'=>'selectA', 'placeholder' => 'Select Academic Year']) }}
                                     
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    {{ Form::select('selectS',$semesters,null,['class' => 'form-control', 'id'=>'selectS','wire:model'=>'selectS', 'placeholder' => 'Select Semester']) }}
+                                    {{ Form::select('selectS',$semesters,null,['class' => 'form-select', 'id'=>'selectS','wire:model'=>'selectS', 'placeholder' => 'Select Semester']) }}
                                     
                                     </div>
                                     <div class="col-lg-1 col-md-3 col-sm-12 p-0">
