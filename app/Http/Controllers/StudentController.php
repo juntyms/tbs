@@ -459,15 +459,21 @@ class StudentController extends Controller
 
         
         
-       
-        $studentcomment=Tutorial_request::create(['available_course_id'=>$avaliable_course,'user_id'=>Auth::User()->id,'tutor_id'=>$tutorid,'date'=>$sotrddate]);
-        Mail::to($studentcomment->AvaliableCourse->tutor->gettutorname->email)->send(new RequestConfirm($studentcomment));
-        if($request->has('comment'))
-        {
-            Student_comment::create(['tutorial_request_id'=>$studentcomment->id,'description'=>$request->comment]);
+        $checkforrequest= Tutorial_request::firstwhere(['available_course_id'=>$avaliable_course,'user_id'=>Auth::User()->id,'tutor_id'=>$tutorid,'date'=>$sotrddate]);
 
-        }
-        Alert::toast('New Tutorial is booked !!','success');
+        if(!$checkforrequest)
+        {
+
+        
+            $studentcomment=Tutorial_request::create(['available_course_id'=>$avaliable_course,'user_id'=>Auth::User()->id,'tutor_id'=>$tutorid,'date'=>$sotrddate]);
+            Mail::to($studentcomment->AvaliableCourse->tutor->gettutorname->email)->send(new RequestConfirm($studentcomment));
+            if($request->has('comment'))
+            {
+                Student_comment::create(['tutorial_request_id'=>$studentcomment->id,'description'=>$request->comment]);
+
+            }
+            Alert::toast('New Tutorial is booked !!','success');
+    }
         return redirect()->route('student.tutorial.list');
     }
 

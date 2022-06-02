@@ -23,7 +23,7 @@
             <tbody>
           
                 <tr>
-                    <td style="border: 1px solid black;">{{$req->AvaliableCourse->tutor->gettutorname->->fullname}}</td>
+                    <td style="border: 1px solid black;">{{$req->AvaliableCourse->tutor->gettutorname->fullname}}</td>
                    <td style="border: 1px solid black;">{{$req->AvaliableCourse->course->name}}</td>
                    <td style="border: 1px solid black;">{{$req->date}}</td>
                    <td style="border: 1px solid black;">{{$req->AvaliableCourse->time}}:00</td>
