@@ -95,7 +95,7 @@ class AdminCourseController extends Controller
                         foreach($Deltrequest_tutorial as $DRq)
                         {
                             $DeleteRq=Tutorial_request::findOrFail($DRq->id);
-                            $DeleteRq->update(['active'=>0,'accepted'=>5]);
+                            $DeleteRq->update(['active'=>0,'accepted'=>4]);
 
                         }
                     }
@@ -239,7 +239,7 @@ class AdminCourseController extends Controller
                 foreach($Deltrequest_tutorial as $Rup)
                 {
                     $DeleteR=Tutorial_request::findOrFail($Rup->id);
-                    $DeleteR->update(['active'=>0,'accepted'=>5]);
+                    $DeleteR->update(['active'=>0,'accepted'=>4]);
 
                 }
                 
@@ -421,7 +421,7 @@ class AdminCourseController extends Controller
                 foreach($Deltrequest_tutorial as $Rup)
                 {
                     $DeleteR=Tutorial_request::findOrFail($Rup->id);
-                    $DeleteR->update(['active'=>0,'accepted'=>5]);
+                    $DeleteR->update(['active'=>0,'accepted'=>4]);
 
                 }
                 
