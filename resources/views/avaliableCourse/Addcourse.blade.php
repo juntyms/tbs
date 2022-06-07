@@ -47,11 +47,11 @@ Select tutor
                           <th>Time</th>
                           <th>Sunday </th>
                           <th>Monday</th>
-                          <th>Tuseday</th>
+                          <th>Tuesday</th>
                           <th>Wednesday</th>
-                          <th>Thrusday</th>
+                          <th>Thursday</th>
                           <th>Friday</th>
-                          <th>Satuday</th>
+                          <th>Saturday</th>
                           
                       </tr>
                       </thead>
