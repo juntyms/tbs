@@ -18,7 +18,7 @@
                         <div class="tile" style="background-color:#084C61;">
                             <h3 class="title text-white">{{$av->code }}</h3>
                             <p class="text-white">{{$av->name}}</p>
-                            <a class="btnclick" style="background-color:#177E89;" href="{{route('AvlisTu',['depid'=>$dep->id,'course'=>$av->id])}}">Click</a>
+                            <a class="btnclick" style="background-color:#177E89;" href="{{route('AvlisTu',['depid'=>$dep->id,'course'=>$av->id])}}">View</a>
                         </div>
                     </div>
              

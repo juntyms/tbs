@@ -43,7 +43,7 @@ Department courses
                                 <th>Course ID</th>
                                 <th>Course Code</th>
                                 <th>Course Name</th>
-                                <th>Course Crated</th>
+                                <th>Course Created</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
