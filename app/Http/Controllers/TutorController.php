@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ay;
 use App\Models\Tutor;
 use Illuminate\Http\Request;
+use App\Mail\RequestApproval;
 use App\Models\Tutor_comment;
 use App\Models\Student_comment;
 use App\Models\Available_course;
@@ -184,7 +185,7 @@ class TutorController extends Controller
             if($status==1)
             {
                 Alert::toast('Request approved ','success');
-                Mail::to($updateRequest->student->email)->send(new RequestConfirm($updateRequest));
+                Mail::to($updateRequest->student->email)->send(new RequestApproval($updateRequest));
 
             }
             if($status==2)
