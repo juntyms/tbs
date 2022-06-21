@@ -12,6 +12,7 @@ use App\Models\Available_course;
 use App\Models\Tutorial_request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TutorController extends Controller

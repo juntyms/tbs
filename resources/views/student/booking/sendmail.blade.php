@@ -28,7 +28,7 @@
                    <td style="border: 1px solid black;">{{$req->date}}</td>
                    <td style="border: 1px solid black;">{{$req->AvaliableCourse->time}}:00</td>
                    <td style="border: 1px solid black;">{{$req->AvaliableCourse->location}}</td>
-                   <td style="border: 1px solid black;">Wating Approval</td>
+                   <td style="border: 1px solid black;">Waiting Approval</td>
                 </tr>
             </tbody>
     </table>
