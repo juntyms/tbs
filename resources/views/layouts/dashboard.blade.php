@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    @livewireScripts
+  
     @include('sweetalert::alert')
     @include('layouts.main-header')
     @include('layouts.main-sidebar.admin-main-sidebar')

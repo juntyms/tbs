@@ -27,8 +27,8 @@ Select tutor
               <form  action="{{route('Addcourse.index')}}" method="POST">
                 @csrf
                 <div class="row">
-                <div class="col-lg-7 mb-3">
-                  <select class="livesearch form-control" id="livesearch" name="livesearch[]"></select>
+                <div class="col-lg-7 mb-3"><select class="livesearch form-control" id="livesearch" name="livesearch[]"></select>
+                  
                 </div>
                   <div class="col-lg-3">
                     <button  type="submit"class="btn btn-primary" style="height:30px; width:100px;">Select</button>
