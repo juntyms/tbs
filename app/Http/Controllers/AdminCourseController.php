@@ -58,7 +58,7 @@ class AdminCourseController extends Controller
             'name' => 'required',
             'courscode' => 'required',
         ]);
-        $checkifExist=Course  ::firstwhere(['code'=>$request->courscode,'active'=>1]);
+        $checkifExist=Course::firstwhere(['code'=>$request->courscode,'active'=>1]);
         if(!$checkifExist){
 
             Course::create(['name'=>$request->name,'code'=>$request->courscode,'department_id'=>Auth::User()->department_id ]);
