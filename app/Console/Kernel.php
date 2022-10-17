@@ -34,11 +34,11 @@ class Kernel extends ConsoleKernel
             {
                 foreach($listTutorial as $list)
                 {
-                    if($list->date<$currentdate)
+                    if($list->date < $currentdate)
                     {
 
                         $list->update(['accepted'=>4]);
-                    }elseif($list->date==$currentdate)
+                    }elseif($list->date == $currentdate)
                     {
 
                         if($list->AvaliableCourse->time<$currenthour)
