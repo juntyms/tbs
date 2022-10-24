@@ -246,7 +246,7 @@
                           @if($dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count() > 0)
                             <td>{{$dep->name}}</td>
                             <td>{{$dep->Available()->where('available_courses.active',1)->where('available_courses.ay_id',$ay->id)->count()}}</td>
-                            <td>{{$dep->RequestDep()->count()}}</td>
+                            <td>{{$dep->RequestDep()->where('tutorial_requests.active',1)->count()}}</td>
                             <td>{{$dep->requestDep()->where('tutorial_requests.active',1)->where('tutorial_requests.accepted',0)->count()}}</td>
                             <td>{{$dep->requestDep()->where('tutorial_requests.active',1)->where('tutorial_requests.accepted',3)->count() + $dep->requestDep()->where('tutorial_requests.active',1)->where('tutorial_requests.accepted',4)->count()}}</td>
                             <td>{{$dep->requestDep()->where('tutorial_requests.active',1)->where('tutorial_requests.accepted',3)->count()}}</td>
