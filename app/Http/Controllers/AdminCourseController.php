@@ -330,9 +330,9 @@ class AdminCourseController extends Controller
         if($request->has('livesearch'))
         {
             $show_AV_time=TRUE;
-            $DepC=Course::get()->where('department_id',Auth::User()->department_id)
-                                ->where('active',1)->pluck('name','id');
-            
+            $DepC=Course::selectraw(\DB::raw("concat(courses.code,'- ',courses.name) as name,courses.id"))
+           ->where('department_id',Auth::User()->department_id)
+                                ->where('active',1)->orderBy('courses.name')->pluck('name','id');
             $userid=$request->input('livesearch.0');
             if($userid)
             {
@@ -421,7 +421,7 @@ class AdminCourseController extends Controller
                 foreach($Deltrequest_tutorial as $Rup)
                 {
                     $DeleteR=Tutorial_request::findOrFail($Rup->id);
-                    $DeleteR->update(['active'=>0,'accepted'=>4]);
+                    $DeleteR->update(['active'=>1,'accepted'=>4]);
 
                 }
                 
