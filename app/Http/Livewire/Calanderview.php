@@ -75,7 +75,7 @@ class Calanderview extends Component
                     ->pluck('users.fullname', 'users.id');
 
                             
-        $this->courses =Course::where('department_id',$depid->id)
+        $this->courses =Course::selectraw(\DB::raw("concat(courses.code,'- ',courses.name) as name,courses.id"))->where('department_id',$depid->id)
                         ->whereExists(function ($query){
                 $query->select(DB::raw(1))
                         ->from('available_courses')

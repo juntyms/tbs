@@ -28,7 +28,7 @@
         
             <?php
                 $Ttimes=array(8,9,10,11,12,13,14,15);
-                $wdays=array('Sunday','Monday','Tuseday','Wednesday','Thursday','Friday','Satuday');
+                $wdays=array('Sunday','Monday','Tuseday','Wednesday','Thursday','Friday','Saturday');
                 for ($i=0; $i < sizeof($Ttimes) ; $i++)
                 {
                 echo '<tr>';
