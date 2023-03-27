@@ -47,7 +47,7 @@ class AdminCourseController extends Controller
     {
         
         $Dep_Courses=Course::where("department_id",Auth::User()->department_id)
-                            ->where('active',1)->cursorPaginate(10);
+                            ->where('active',1)->get();
         return view('course.index')->with('Dep_Courses', $Dep_Courses);
     }
 
